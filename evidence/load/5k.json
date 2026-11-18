@@ -1,0 +1,16 @@
+{
+ "tier": "5k",
+ "vus": 5000,
+ "think_s": 5.0,
+ "p50_ms": 41.86,
+ "p95_ms": 54.11,
+ "p99_ms": 65.93,
+ "max_ms": 146.3,
+ "rps": 789.6,
+ "requests": 54595,
+ "err_rate": 0,
+ "cache_hit_ratio": 0.089,
+ "checks_pass_rate": 1,
+ "conditions": "single 4-core host; k6, 4 uvicorn workers, Streamlit idle; STUB model 40ms (simulated); real PII/injection hooks",
+ "status": "PASS"
+}

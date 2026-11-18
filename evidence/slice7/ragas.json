@@ -1,18 +1,21 @@
 {
- "faithfulness": 1.0,
- "hallucination_rate": 0.0,
- "answer_relevancy": 0.514,
- "cited_context_entity_recall": 0.827,
+ "faithfulness": 0.977,
+ "hallucination_rate": 0.023,
+ "answer_relevancy": 0.692,
+ "cited_context_entity_recall": 0.833,
  "abstention_accuracy": "5/5",
  "answers_with_ungrounded_values": 0,
  "modes": {
-  "generated": 25,
+  "generated": 21,
   "abstain": 4,
-  "regenerated": 1,
-  "canned": 4
+  "regenerated": 2,
+  "extractive_fallback": 4,
+  "canned": 3
  },
  "wrong_route": [],
- "e2e_p50_ms": 10589,
- "e2e_p95_ms": 17177,
- "spent_usd": 0.081
+ "judge_failures": [],
+ "answered": 27,
+ "e2e_p50_ms": 9439,
+ "e2e_p95_ms": 22500,
+ "spent_usd": 0.0835
 }

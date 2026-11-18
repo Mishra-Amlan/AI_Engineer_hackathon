@@ -1,0 +1,16 @@
+{
+ "tier": "10k",
+ "vus": 10000,
+ "think_s": 5.0,
+ "p50_ms": 87.85,
+ "p95_ms": 1601.45,
+ "p99_ms": 2131.22,
+ "max_ms": 3143.8,
+ "rps": 1362.9,
+ "requests": 109053,
+ "err_rate": 0,
+ "cache_hit_ratio": 0.289,
+ "checks_pass_rate": 0.9189140448528086,
+ "conditions": "single 4-core host; k6, 4 uvicorn workers, Streamlit idle; STUB model 40ms (simulated); real PII/injection hooks",
+ "status": "FAIL"
+}

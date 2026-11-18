@@ -1,0 +1,1 @@
+{"source": "scripts/smoke_live.py (Haiku 5.5 via OpenRouter, 24 labeled queries)", "accuracy": 1.0, "n": 24, "p50_ms": 887, "p95_ms": 2963, "note": "remote LLM; local SLM needed for the 25 ms target"}

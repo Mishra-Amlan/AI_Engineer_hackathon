@@ -8,7 +8,7 @@ Guidance for Claude Code when working in this repo. Derived from three source do
 | `Post_Hardening_Engineering_Audit_Report.docx` | Claimed post-build results + root-cause baseline. Treat as *targets/evidence to reproduce*, not as verified facts. |
 | `SLM_Comprehensive_Guide.docx` | Reference for small-model selection and QLoRA fine-tuning (candidate for Triage / Verification models). |
 
-Status: this directory currently contains only the docs (no code yet). Everything below is what must be built.
+Status: slices 0–13 implemented to the extent recorded in `design.md` §9 and `evidence/`; run `python3 scripts/gate_report.py` for the computed scorecard. Remaining gaps: 50K/JMeter/soak load, real Redis/Postgres/OTel, local SLM for latency KPIs, quality gates in RAGAS.
 
 ## 0. Hard Rules (read first)
 

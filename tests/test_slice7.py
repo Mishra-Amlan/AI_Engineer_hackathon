@@ -20,7 +20,7 @@ CH = [{"id": "c1", "source": "Blueprint", "text": "[Blueprint > Gate 3] RRF smoo
       {"id": "c2", "source": "Blueprint", "text": "[Blueprint > Gate 9] Circuit breaker trips if the same call fails >= 2 times and moves to HALTED_BREAKER."}]
 J = json.dumps
 GOOD = J({"answer": "The RRF smoothing constant is 60 [1].", "citations": [1]})
-OK_V = J({"verdicts": [{"i": 0, "supported": True}]})
+OK_V = J({"verdicts": [{"i": 0, "supported": True, "source": 1, "quote": "RRF smoothing constant k = 60"}]})
 BAD_V = J({"verdicts": [{"i": 0, "supported": False}]})
 
 def pipe(script, provider=None):
@@ -184,3 +184,12 @@ async def test_per_tool_timeout_override_allows_slow_retrieval():
     assert (await fast.run("tA", "u", "x"))["abstain"]                      # default 120ms-style budget times out -> safe abstain
     ok = RetrievalSubagent(ToolHarness([retrieval_tool(Slow(), lambda: "tA", timeout_s=2)], step_timeout_s=0.1))
     assert not (await ok.run("tA", "u", "x"))["abstain"]
+
+
+async def test_verifier_claim_without_literal_quote_is_rejected():
+    fake_quote = J({"verdicts": [{"i": 0, "supported": True, "source": 1, "quote": "the constant is sixty"}]})
+    no_quote = J({"verdicts": [{"i": 0, "supported": True}]})
+    for v in (fake_quote, no_quote):
+        g, _ = pipe({"t2p": GOOD, "t2f": GOOD, "v": v})
+        r = await g.run("t", "q", CH)
+        assert r.mode == "extractive_fallback" and r.unsupported

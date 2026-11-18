@@ -185,3 +185,11 @@ async def test_groq_without_key_is_fatal_auth_not_silent_openrouter():
     r.tiers[Tier.T3] = ["groq:openai/gpt-oss-120b", "t3f"]
     out = await r.complete(req(Tier.T3))
     assert out.model == "t3f" and not out.abstained       # groq model skipped, never silently sent to OpenRouter
+
+
+async def test_schema_failures_do_not_open_breaker_but_transport_errors_do():
+    r, _ = mk({"t1p": "garbage", "t1f": "garbage"})
+    for _ in range(5): await r.complete(req(Tier.T1, json_schema=Out))
+    assert r.breakers["t1p"].state == "closed"
+    r2, _ = mk({"t1p": ProviderError("server")})
+    await r2.complete(req(Tier.T1)); assert r2.breakers["t1p"].state == "open"

@@ -41,7 +41,8 @@ async def main():
         if r.route != "HYBRID_RAG": wrong_route.append((qn, r.route)); continue
         if r.abstained: print("  ANSWERABLE abstained:", qn); rel.append(0.0); continue
         cites = {c["id"] for c in r.citations}
-        ctx = [{"text": c.text} for c in chunks if c.id in cites] or [{"text": c.text} for c in chunks[:0]]
+        ctx = [{"text": c.text} for c in chunks if c.id in cites]
+        allctx = [{"text": c.text} for c in chunks if c.id in set(r.retrieved_ids)]
         j = await judge_answer(router, judge, qn, r.text, ctx)
         if j["f_reason"] or j["r_reason"]: judge_fail.append((qn, j["f_reason"], j["r_reason"]))
         if j["supported"] is not None: claims += j["claims"]; sup += j["supported"]
@@ -50,7 +51,7 @@ async def main():
             if j["relevancy"] < 0.7: print("  LOW relevancy", j["relevancy"], qn, "|", r.text[:100])
         ungr += bool(j["ungrounded"])
         if j["supported"] is not None and j["supported"] < j["claims"]: print("  UNSUPPORTED claims:", qn, j["supported"], "/", j["claims"], "|", r.text[:120])
-        txt = " ".join(c["text"] for c in ctx)
+        txt = " ".join(c["text"] for c in allctx)
         ent.append(sum(any(x in txt for x in g) for g in groups) / len(groups))
     lat.sort()
     print(json.dumps({"faithfulness": round(sup / claims, 3) if claims else None, "hallucination_rate": round(1 - sup / claims, 3) if claims else None,

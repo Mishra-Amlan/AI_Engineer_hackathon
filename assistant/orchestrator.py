@@ -28,11 +28,13 @@ class Response:
     mode: str = ""
     spans_ms: dict = field(default_factory=dict)
     cost_usd: float = 0.0
+    retrieved_ids: list[str] = field(default_factory=list)
 
 
 class Orchestrator:
     def __init__(self, plugins: PluginManager, triage: TriageAgent, retrieval: RetrievalSubagent,
-                 generation: GenerationPipeline, execution: ExecutionSubagent, audit: AuditLog):
+                 generation: GenerationPipeline, execution: ExecutionSubagent, audit: AuditLog, cache=None):
+        self.cache = cache
         self.plugins, self.triage, self.retrieval, self.gen, self.exec, self.audit = plugins, triage, retrieval, generation, execution, audit
 
     async def handle(self, tenant_id: str, user_id: str, text: str, session: str = "s") -> Response:
@@ -48,6 +50,12 @@ class Orchestrator:
             return Response(REFUSAL, "BLOCKED", rid, blocked=True, spans_ms=spans)
         clean = ctx.text                                    # PII-redacted from here on
         self.audit.append(tenant_id, "request.accepted", {"rid": rid, "text": clean, "findings": ctx.findings})
+
+        t = time.perf_counter()
+        hit = self.cache.lookup(tenant_id, user_id, clean) if self.cache else None
+        span("cache.lookup", t)
+        if hit is not None:
+            return self._done(tenant_id, rid, Response(hit["text"], hit["route"], rid, citations=hit["citations"], mode="cache_hit"), spans, t0)
 
         t = time.perf_counter()
         tri = await self.triage.classify(tenant_id, clean)
@@ -75,8 +83,12 @@ class Orchestrator:
         cites = [{"n": n, "id": ev["chunks"][n - 1]["id"], "source": ev["chunks"][n - 1]["source"]} for n in g.citations]
         self.audit.append(tenant_id, "answer", {"rid": rid, "mode": g.mode, "verified": g.verified, "cites": [c["id"] for c in cites],
                                                 "unsupported": g.unsupported[:3], "llm_calls": g.llm_calls})
-        return self._done(tenant_id, rid, Response(g.answer, tri.route.value, rid, abstained=g.mode == "abstain", citations=cites,
-                                                   mode=g.mode, cost_usd=g.cost_usd), spans, t0)
+        resp = Response(g.answer, tri.route.value, rid, abstained=g.mode == "abstain", citations=cites, mode=g.mode, cost_usd=g.cost_usd,
+                    retrieved_ids=[c["id"] for c in ev["chunks"]])
+        # cache only verified, generated, non-low-confidence policy answers (never abstentions, fallbacks, transactions)
+        if self.cache and g.mode in ("generated", "regenerated") and g.verified and not ev.get("low_confidence"):
+            self.cache.store(tenant_id, user_id, clean, {"text": g.answer, "route": tri.route.value, "citations": cites})
+        return self._done(tenant_id, rid, resp, spans, t0)
 
     def _done(self, tenant_id, rid, resp: Response, spans, t0) -> Response:
         spans["total"] = (time.perf_counter() - t0) * 1000

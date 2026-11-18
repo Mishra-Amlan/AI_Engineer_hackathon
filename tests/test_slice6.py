@@ -121,7 +121,7 @@ class FakeRetriever:
     def __init__(self, abstain=False, low=False): self.abstain, self.low = abstain, low
     def retrieve(self, tenant, q):
         from types import SimpleNamespace as N
-        hit = N(chunk=N(id="c1", source="doc", text="RRF k is 60"))
+        hit = N(chunk=N(id="c1", source="doc", text="[doc] RRF smoothing constant k = 60 in this system."))
         return N(abstain=self.abstain, low_confidence=self.low, confidence=0.9, hits=[] if self.abstain else [hit])
 
 async def test_retrieval_subagent_evidence_abstain_and_tenant_binding():

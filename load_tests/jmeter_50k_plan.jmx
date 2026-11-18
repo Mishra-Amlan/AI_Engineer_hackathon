@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Distributed plan: 1 controller + 10 workers x 5,000 threads = 50,000 VUs. NOT EXECUTED on this host (JMeter not installed).
+     Run: jmeter -n -t jmeter_50k_plan.jmx -R worker1,...,worker10 -l results_50k.jtl -e -o dashboard_50k/ -Jthreads=5000 -Jramp=180 -Jduration=600 -Jhost=localhost -Jport=8000 -->
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Unreliable Assistant 50K"><boolProp name="TestPlan.functional_mode">false</boolProp></TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="VUs">
+        <intProp name="ThreadGroup.num_threads">${__P(threads,5000)}</intProp>
+        <intProp name="ThreadGroup.ramp_time">${__P(ramp,180)}</intProp>
+        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+        <stringProp name="ThreadGroup.duration">${__P(duration,600)}</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController"><boolProp name="LoopController.continue_forever">false</boolProp><intProp name="LoopController.loops">-1</intProp></elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="POST /api/v1/agent/query">
+          <stringProp name="HTTPSampler.domain">${__P(host,localhost)}</stringProp><stringProp name="HTTPSampler.port">${__P(port,8000)}</stringProp>
+          <stringProp name="HTTPSampler.path">/api/v1/agent/query</stringProp><stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments"><collectionProp name="Arguments.arguments"><elementProp name="" elementType="HTTPArgument">
+            <stringProp name="Argument.value">{"tenant_id":"tenant_${__threadNum}","user_id":"user_${__threadNum}","query":"Verify batch LOT-88392 safety protocol"}</stringProp></elementProp></collectionProp></elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager"><collectionProp name="HeaderManager.headers">
+            <elementProp name="" elementType="Header"><stringProp name="Header.name">Content-Type</stringProp><stringProp name="Header.value">application/json</stringProp></elementProp>
+            <elementProp name="" elementType="Header"><stringProp name="Header.name">X-Tenant-ID</stringProp><stringProp name="Header.value">tenant_${__threadNum}</stringProp></elementProp></collectionProp></HeaderManager><hashTree/>
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="600 ms SLA"><stringProp name="DurationAssertion.duration">600</stringProp></DurationAssertion><hashTree/>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="tenant retained"><stringProp name="JSON_PATH">$.tenant_id</stringProp><stringProp name="EXPECTED_VALUE">tenant_${__threadNum}</stringProp><boolProp name="JSONVALIDATION">true</boolProp></JSONPathAssertion><hashTree/>
+          <ConstantThroughputTimer guiclass="TestBeanGUI" testclass="ConstantThroughputTimer"><doubleProp><name>throughput</name><value>60.0</value></doubleProp><intProp name="calcMode">4</intProp></ConstantThroughputTimer><hashTree/>
+        </hashTree>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

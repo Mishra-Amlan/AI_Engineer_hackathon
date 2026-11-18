@@ -123,11 +123,17 @@ Triage, Model Router (component), Guardrails (PII, injection), Query-Rewrite, Re
 
 | # | Slice | Status |
 |---|---|---|
-| 0 | design.md + diagram | design.md ✅ / diagram ⏳ (no graphviz `dot` binary installed) |
+| 0 | design.md + diagram | ✅ design.md + docs/workflow_orchestration.png (300 DPI, matplotlib; no Graphviz `dot` on host) |
 | 1 | Skeleton: config, tenant isolation, audit chain | ✅ 15 tests green |
 | 2 | Plugins: PII redactor, injection shield, plugin manager | ✅ 18 tests green (heuristic; 100-prompt suite in slice 11) |
 | 3 | Provider abstraction + Model Router + fallback; Triage Agent | ✅ 70 tests green; live smoke on Haiku 5.5: triage 24/24 via SLM path, p50 887 ms (remote API; KPI-05 25 ms needs local SLM — dev-mode caveat §5) |
 | 4 | Hybrid RAG (3 docs as corpus, 66 chunks) | ✅/⚠ recall@50 1.00, MRR@4 0.856, abstention 5/5, false abstention 0/29 (agreement rescue, flagged low_confidence). Open: KPI-13 nDCG 0.78 (loose labels + dev reranker), KPI-09 rerank ~1.6 s on CPU (needs GPU/hosted/ONNX-int8). Dev models bge-small + MiniLM-L6 |
 | 5 | ToolExecutionHarness + bounded ReAct loop + breaker + GoalAnchor + memory | ✅ 22 tests: KPI-14/15/16/17 measured on synthetic mixes; KPI-18 (drift cosine) NOT yet measured; LLM-backed reasoner not built yet (loop takes any reasoner) |
 | 6 | HITL gate + Retrieval/Execution subagents + LLM reasoner | ✅ 15 tests; KPI-19 property test (200 random flows) 100%. Verification subagent deferred to slice 7 (with RAGAS). Live Haiku smoke: reads+auto-repair OK (2 steps, $0.0005); 450 ms loop budget is unreachable with a remote LLM (~0.8 s/call) -> configurable, dev uses 15 s |
-| 7–13 | per CLAUDE.md §13 | ▶ 7 next |
+| 7 | Generation + Verification (quote-proof veto) + RAGAS-lite + orchestrator | ⚠ built; see `evidence/slice7/ragas.json` — faithfulness/relevancy/hallucination gates still failing; remote-LLM latency ~9 s e2e |
+| 8 | Obsidian vault (66 notes) + Graphify depth<=2 pruning | ✅ token reduction 70%, entity recall 0.90 (gate 0.85) |
+| 9 | Tenant-isolated semantic cache (single-flight, versioned) | ✅ 9 tests incl. KPI-28 probe; in-memory (Redis impl pending) |
+| 10 | Versioned artifacts, flags, canary + auto-rollback | ✅ 11 tests (in-process; no real flag service/DR drill yet) |
+| 11 | 100-prompt red-team suite | ✅ 100% handled; rules co-developed with suite (regression guard, not independent audit) |
+| 12 | Streamlit 6-tab workbench (`app.py`) | ✅ headless tests; runs on :8501 |
+| 13 | Load ladder | ⚠ 1K PASS, 5K PASS (stub model), 10K FAIL (saturates ~1.4K RPS on 4-core host); 50K + JMeter + 1h soak NOT RUN |

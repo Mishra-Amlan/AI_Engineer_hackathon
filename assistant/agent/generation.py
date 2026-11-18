@@ -19,6 +19,8 @@ class GenOut(BaseModel):
 class Verdict(BaseModel):
     i: int
     supported: bool
+    source: int = 0
+    quote: str = ""
 
 
 class VerifyOut(BaseModel):
@@ -35,8 +37,9 @@ Reply ONLY JSON: {"answer": "...", "citations": [1]}"""
 STRICT = "\nSTRICT EXTRACTIVE MODE: retrieval confidence is low. Quote or closely paraphrase one source sentence; do not infer."
 
 VER_SYS = """You are a strict fact-checker. Given SOURCES and a list of numbered CLAIMS, decide for each claim whether the sources
-directly support it. Unsupported, contradicted, or merely plausible claims are supported=false.
-Reply ONLY JSON: {"verdicts":[{"i":0,"supported":true}]}"""
+directly support it. Unsupported, contradicted, over-generalised, comparative ("largest", "best") without explicit support, or merely plausible claims are supported=false.
+For every supported=true you MUST give "source" (the source id) and "quote": an EXACT contiguous substring (max 25 words) copied from that source that proves the claim. No exact quote => supported=false.
+Reply ONLY JSON: {"verdicts":[{"i":0,"supported":true,"source":1,"quote":"..."}]}"""
 
 _NUM = re.compile(r"(?<![\w.])\d[\d,]*(?:\.\d+)?%?")
 _ID = re.compile(r"\b(?:SKU|LOT)-\d+\b|\bKPI-\d+\b|\bGate \d+\b", re.I)
@@ -98,11 +101,18 @@ class GenerationPipeline:
         claims = split_claims(answer)
         user = f"SOURCES:\n{sources_block(chunks)}\n\nCLAIMS:\n" + "\n".join(f"{i}. {c}" for i, c in enumerate(claims))
         r = await self.router.complete(RouterRequest(tenant_id=tenant, tier=Tier.T2, models=[self.vmodel], temperature=0.0,
-                                                     max_tokens=200, json_schema=VerifyOut, purpose="verify",
+                                                     max_tokens=500, json_schema=VerifyOut, purpose="verify",
                                                      messages=[Message(role="system", content=VER_SYS), Message(role="user", content=user)]))
         if r.abstained or not r.parsed:
             return False, ["verifier_unavailable"], r.cost_usd, False       # fail closed
-        sup = {v["i"]: v["supported"] for v in r.parsed["verdicts"]}
+        def norm(x): return re.sub(r"\s+", " ", x).strip().lower()
+        sup = {}
+        for v in r.parsed["verdicts"]:
+            ok = v["supported"]
+            if ok:   # deterministic proof check: the quoted evidence must literally exist in the cited source
+                src = srcs[v["source"] - 1] if 1 <= v.get("source", 0) <= len(srcs) else ""
+                ok = bool(v.get("quote")) and norm(v["quote"]) in norm(src)
+            sup[v["i"]] = ok
         unsupported = [c for i, c in enumerate(claims) if not sup.get(i, False)]
         unsupported += [f"ungrounded value {t}" for t in bad_tokens]
         return not unsupported, unsupported, r.cost_usd, True

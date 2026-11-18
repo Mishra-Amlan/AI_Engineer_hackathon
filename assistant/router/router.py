@@ -119,7 +119,8 @@ class ModelRouter:
                     e = ProviderError("timeout")
                 except ProviderError as pe:
                     e = pe
-                br.failure()
+                if e.kind != "bad_output":      # output-quality failures retry/fallback but must not trip the provider-health breaker
+                    br.failure()
                 resp.trace.append({"model": model, "error": e.kind, "attempt": attempt})
                 if e.fatal:      # auth/credits are per-provider: trip this model, keep walking the ladder
                     br.failures = br.threshold; br.opened_at = self.clock()

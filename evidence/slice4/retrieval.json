@@ -1,0 +1,3 @@
+{"source": "scripts/calibrate.py + tests/test_slice4_integration.py (dev models bge-small + ms-marco-MiniLM-L6, 66 chunks, 29 answerable / 5 negative)",
+ "recall50": 1.0, "mrr4": 0.856, "ndcg4": 0.778, "precision_returned": 0.649, "abstain_acc": 1.0, "false_abstention": 0.0,
+ "bm25_p95_ms": 0.8, "dense_p95_ms": 35.6, "rerank_ms_40pairs_cpu": 1580}

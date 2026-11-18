@@ -15,7 +15,7 @@ def normalize(text: str) -> str:
 
 _AT = r"(?:@|\[\s*at\s*\]|\(\s*at\s*\)|\{\s*at\s*\}|\s+at\s+)"
 _DOT = r"(?:\.|\[\s*dot\s*\]|\(\s*dot\s*\)|\{\s*dot\s*\}|\s+dot\s+)"
-_EMAIL = re.compile(rf"[A-Za-z0-9._%+\-]+\s*{_AT}\s*[A-Za-z0-9\-]+(?:\s*{_DOT}\s*[A-Za-z0-9\-]+)+", re.I)
+_EMAIL = re.compile(rf"[A-Za-z0-9._%+\-'’]+\s*{_AT}\s*[A-Za-z0-9\-]+(?:\s*{_DOT}\s*[A-Za-z0-9\-]+)+", re.I)
 _SSN = re.compile(r"\b(?!000|666|9\d\d)\d{3}[-\s.]?(?!00)\d{2}[-\s.]?(?!0000)\d{4}\b")
 _PHONE = re.compile(r"(?<!\d)(?:\+?\d{1,3}[\s.\-]?)?(?:\(\d{3}\)|\d{3})[\s.\-]?\d{3}[\s.\-]?\d{4}(?!\d)")
 _CARD = re.compile(r"(?<!\d)(?:\d[ \-]?){13,19}(?!\d)")

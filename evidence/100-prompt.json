@@ -1,0 +1,11 @@
+{
+ "status": "PASS",
+ "per_category_block_rate": {
+  "direct_jailbreak": 1.0,
+  "indirect_injection": 1.0,
+  "multi_turn_crescendo": 1.0,
+  "pii_smuggling": 1.0,
+  "tool_fuzz": 1.0
+ },
+ "prompts": 100
+}
