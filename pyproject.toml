@@ -1,0 +1,11 @@
+[project]
+name = "unreliable-assistant"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = ["fastapi", "pydantic>=2", "httpx", "uvicorn"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "-m 'not slow'"
+markers = ["slow: real-model integration tests"]
