@@ -1,0 +1,628 @@
+{"q": "yo whats good", "intent": "smalltalk"}
+{"q": "hello there, i'm new here and honestly have no clue what im supposed to be doing lol", "intent": "smalltalk"}
+{"q": "thanks for that", "intent": "smalltalk"}
+{"q": "who even r u", "intent": "smalltalk"}
+{"q": "catch u later", "intent": "smalltalk"}
+{"q": "what exactly can u do for me", "intent": "smalltalk"}
+{"q": "appreciate the help fr fr", "intent": "smalltalk"}
+{"q": "bye", "intent": "smalltalk"}
+{"q": "so like... what's your deal", "intent": "smalltalk"}
+{"q": "thx so much", "intent": "smalltalk"}
+{"q": "gtg talk soon", "intent": "smalltalk"}
+{"q": "can you actually help with anything real or nah", "intent": "smalltalk"}
+{"q": "hey quick question - who am i talking to rn", "intent": "smalltalk"}
+{"q": "okay im leaving now", "intent": "smalltalk"}
+{"q": "thank you very much for your assistance", "intent": "smalltalk"}
+{"q": "what r ur capabilities exactly", "intent": "smalltalk"}
+{"q": "see ya", "intent": "smalltalk"}
+{"q": "im confused about what you even are", "intent": "smalltalk"}
+{"q": "thanks a ton", "intent": "smalltalk"}
+{"q": "peace out", "intent": "smalltalk"}
+{"q": "so what all can you actually do", "intent": "smalltalk"}
+{"q": "later dude", "intent": "smalltalk"}
+{"q": "identify yourself", "intent": "smalltalk"}
+{"q": "grateful for the support", "intent": "smalltalk"}
+{"q": "im out", "intent": "smalltalk"}
+{"q": "explain your purpose", "intent": "smalltalk"}
+{"q": "thx", "intent": "smalltalk"}
+{"q": "adios", "intent": "smalltalk"}
+{"q": "what's the scope of things you can help with", "intent": "smalltalk"}
+{"q": "much appreciated", "intent": "smalltalk"}
+{"q": "i gotta go", "intent": "smalltalk"}
+{"q": "who r u tho fr", "intent": "smalltalk"}
+{"q": "thanks!!", "intent": "smalltalk"}
+{"q": "talk to u soon", "intent": "smalltalk"}
+{"q": "what limitations do you have", "intent": "smalltalk"}
+{"q": "THANKS", "intent": "smalltalk"}
+{"q": "im outta here", "intent": "smalltalk"}
+{"q": "so what exactly are you", "intent": "smalltalk"}
+{"q": "hey there, how's it going today?", "intent": "smalltalk"}
+{"q": "im new here so... what exactly do u do?", "intent": "smalltalk"}
+{"q": "Thanks for the help earlier, really appreciate it", "intent": "smalltalk"}
+{"q": "catch u later!", "intent": "smalltalk"}
+{"q": "Who even are you exactly? Like what's your purpose here", "intent": "smalltalk"}
+{"q": "goodbye", "intent": "smalltalk"}
+{"q": "Can you actually help me or nah", "intent": "smalltalk"}
+{"q": "Morning! Ready to get started?", "intent": "smalltalk"}
+{"q": "appreciate you taking the time to explain that", "intent": "smalltalk"}
+{"q": "what r u capable of doing for me specifically", "intent": "smalltalk"}
+{"q": "heyy just wanted to say thanks for being patient with me", "intent": "smalltalk"}
+{"q": "ok im out", "intent": "smalltalk"}
+{"q": "so like... are you a person or a robot or what", "intent": "smalltalk"}
+{"q": "You helped me out a ton, seriously grateful", "intent": "smalltalk"}
+{"q": "deuces", "intent": "smalltalk"}
+{"q": "what's your deal anyway", "intent": "smalltalk"}
+{"q": "Hi! This is my first time using this, not sure how it works", "intent": "smalltalk"}
+{"q": "tyvm for everything", "intent": "smalltalk"}
+{"q": "I don't really understand what I'm talking to right now, can you explain?", "intent": "smalltalk"}
+{"q": "thanks so much, you're the best", "intent": "smalltalk"}
+{"q": "gtg, talk soon", "intent": "smalltalk"}
+{"q": "What can you actually do? Like give me the full rundown", "intent": "smalltalk"}
+{"q": "much appreciated, means a lot", "intent": "smalltalk"}
+{"q": "cya", "intent": "smalltalk"}
+{"q": "is this ai or am i chatting with a real person", "intent": "smalltalk"}
+{"q": "Thank u so much for ur help and support throughout this", "intent": "smalltalk"}
+{"q": "so what exactly is ur function here and can u help with my thing", "intent": "smalltalk"}
+{"q": "appreciate the quick response, thanks", "intent": "smalltalk"}
+{"q": "bye bye", "intent": "smalltalk"}
+{"q": "Who r u and what do u want from me lol", "intent": "smalltalk"}
+{"q": "thanks a million for everything you did for me today", "intent": "smalltalk"}
+{"q": "later gator", "intent": "smalltalk"}
+{"q": "I'm confused about what you are, can you tell me about yourself?", "intent": "smalltalk"}
+{"q": "ty for being so helpful and understanding", "intent": "smalltalk"}
+{"q": "im out peace", "intent": "smalltalk"}
+{"q": "whats our policy on remote work during Q4 and does it apply to contractors too?", "intent": "policy_question"}
+{"q": "How do we handle PII in RAG retrieval systems without leaking it to the context window?", "intent": "policy_question"}
+{"q": "can someone explain the reranking pipeline? like why we use it instead of just relying on initial retrieval scores", "intent": "policy_question"}
+{"q": "Do we have compliance requirements for storing customer data in vector databases?", "intent": "policy_question"}
+{"q": "Our SOP says 48hr approval for budget requests but what if the CFO is out?", "intent": "policy_question"}
+{"q": "why would you fine-tune a small LLM when you could just use prompt engineering with GPT-4?", "intent": "policy_question"}
+{"q": "WHAT'S THE PROCESS FOR ACCESSING PRODUCTION LOGS and who needs to authorize it?", "intent": "policy_question"}
+{"q": "Is there guidance on which model licenses allow commercial deployment? we're considering Llama 2 vs Mistral", "intent": "policy_question"}
+{"q": "how does the agent framework decide between tool calls and direct responses? theres gotta be a threshold somewhere", "intent": "policy_question"}
+{"q": "do we track latency KPIs differently for synchronous vs async inference endpoints", "intent": "policy_question"}
+{"q": "Employee handbook says no side projects but does contributing to open source count?", "intent": "policy_question"}
+{"q": "What hyperparameters are you using for the retrieval reranker and has that been tuned for our domain", "intent": "policy_question"}
+{"q": "compliance question\u2014are we SOC 2 Type II certified and what does that mean for API security", "intent": "policy_question"}
+{"q": "load testing: what's the max concurrent requests our RAG system can handle before degradation", "intent": "policy_question"}
+{"q": "Why is observability important for AI systems and what metrics should we actually be tracking", "intent": "policy_question"}
+{"q": "the handbook mentions PTO carryover but I started mid-year, does the prorating SOP still apply", "intent": "policy_question"}
+{"q": "Can you explain the difference between sparse and dense retrieval in RAG architectures", "intent": "policy_question"}
+{"q": "Do we have a policy on disclosing AI usage to end users and is it legally required", "intent": "policy_question"}
+{"q": "How do you prevent hallucinations when reranking returns low-relevance passages for edge cases", "intent": "policy_question"}
+{"q": "whats the process for onboarding new compliance requirements from regulatory changes", "intent": "policy_question"}
+{"q": "Our agents keep making wrong tool selections. Is this a prompt issue or should we retrain the routing model", "intent": "policy_question"}
+{"q": "Does the SOP for incident response change if the outage involves an LLM inference service", "intent": "policy_question"}
+{"q": "what's the difference between fine-tuning and prompt engineering for domain adaptation", "intent": "policy_question"}
+{"q": "Security question: how do we validate that RAG context isn't being manipulated by prompt injection", "intent": "policy_question"}
+{"q": "Is there an approved vendor list for LLM APIs or can we use any provider we want", "intent": "policy_question"}
+{"q": "load test results showed p99 latency spike at 500 RPS\u2014is that expected or do we need optimization", "intent": "policy_question"}
+{"q": "policy question: can employees use company AI tools for personal projects on company time", "intent": "policy_question"}
+{"q": "How does your agent framework handle tool calling errors and fallback logic", "intent": "policy_question"}
+{"q": "What KPIs do we monitor for RAG retrieval quality and how often are they reviewed", "intent": "policy_question"}
+{"q": "the reranker seems slow\u2014have we profiled it or considered a smaller model", "intent": "policy_question"}
+{"q": "Compliance: do we need data retention policies specifically for vector embeddings", "intent": "policy_question"}
+{"q": "Why would you use a small language model instead of just calling a larger API-based model", "intent": "policy_question"}
+{"q": "SOP for code review says 2 approvals but for infrastructure changes is that still required", "intent": "policy_question"}
+{"q": "How do hyperparameter choices affect both model quality and inference cost", "intent": "policy_question"}
+{"q": "Do we have observability dashboards for monitoring agent decision trees in production", "intent": "policy_question"}
+{"q": "Policy question about timezone flexibility: do remote employees need to overlap with HQ hours", "intent": "policy_question"}
+{"q": "Can you explain why reranking sometimes helps and sometimes hurts retrieval performance", "intent": "policy_question"}
+{"q": "Is there a security audit process before deploying fine-tuned models to production", "intent": "policy_question"}
+{"q": "what metrics indicate that an LLM agent is degrading and needs retraining or adjustment", "intent": "policy_question"}
+{"q": "Employee handbook doesn't mention AI tool usage rights\u2014is there a separate policy doc", "intent": "policy_question"}
+{"q": "what's our policy on remote work after the restructuring last month?", "intent": "policy_question"}
+{"q": "How do I submit an expense report for client travel?", "intent": "policy_question"}
+{"q": "can the RAG system handle documents larger than 500MB without degradation?", "intent": "policy_question"}
+{"q": "PTO carryover rules for 2024 - do unused days expire?", "intent": "policy_question"}
+{"q": "Why is our retrieval latency spiking during peak hours? Is it the reranker?", "intent": "policy_question"}
+{"q": "whats the process for onboarding new vendors to our supply chain", "intent": "policy_question"}
+{"q": "Does the LLM support streaming responses, and what's the token throughput limit?", "intent": "policy_question"}
+{"q": "HIPAA compliance checklist for our customer data warehouse - where's the doc?", "intent": "policy_question"}
+{"q": "Can we fine-tune a 7B parameter model on our proprietary dataset, licensing-wise?", "intent": "policy_question"}
+{"q": "how do i request time off during the blackout period", "intent": "policy_question"}
+{"q": "What observability metrics should we track for the agent loop? Error rates? Fallback frequency?", "intent": "policy_question"}
+{"q": "Our SOP for incident response - is it still the 2023 version or updated?", "intent": "policy_question"}
+{"q": "Does reranking improve precision more than recall in your benchmarks?", "intent": "policy_question"}
+{"q": "clarification needed: is the approval threshold for purchases $5k or $10k now?", "intent": "policy_question"}
+{"q": "Load testing results - can the system handle 10K concurrent requests with <200ms p95 latency?", "intent": "policy_question"}
+{"q": "what are the hyperparameters for temperature and top_k in production deployment?", "intent": "policy_question"}
+{"q": "Background check requirements for contractors - third-party or internal vetting?", "intent": "policy_question"}
+{"q": "Is there a security audit trail for all RAG queries and retrieved documents?", "intent": "policy_question"}
+{"q": "how's the agent performing on multi-hop reasoning tasks vs single-step queries", "intent": "policy_question"}
+{"q": "Sick leave policy: do we have a limit per fiscal year or is it unlimited?", "intent": "policy_question"}
+{"q": "Why does the reranker sometimes rank irrelevant docs higher than semantic search alone?", "intent": "policy_question"}
+{"q": "can you explain the difference between your KPI targets for accuracy vs coverage", "intent": "policy_question"}
+{"q": "What's the compliance requirement for data retention - 3 years, 5 years, or by regulation?", "intent": "policy_question"}
+{"q": "Model licensing - are we using proprietary, open-source, or a mix? Any commercial restrictions?", "intent": "policy_question"}
+{"q": "Does the system support multi-modal retrieval (text + images + tables)?", "intent": "policy_question"}
+{"q": "employee code of conduct - specifically guidelines around social media and NDAs", "intent": "policy_question"}
+{"q": "Our fine-tuning pipeline - batch size, learning rate schedule, and early stopping criteria?", "intent": "policy_question"}
+{"q": "Is there a documented SLA for query response times across different document types?", "intent": "policy_question"}
+{"q": "What's the process for escalating a compliance violation if I witness one?", "intent": "policy_question"}
+{"q": "How many retrieval candidates does the reranker evaluate before selecting top-k?", "intent": "policy_question"}
+{"q": "Budget approval workflow: do I go through my manager or directly to finance?", "intent": "policy_question"}
+{"q": "Does the agent have safeguards against prompt injection or hallucination in sensitive domains?", "intent": "policy_question"}
+{"q": "Training requirements for handling confidential client information - annual or quarterly refresh?", "intent": "policy_question"}
+{"q": "What's the latency breakdown: retrieval vs reranking vs LLM inference vs post-processing?", "intent": "policy_question"}
+{"q": "Can we use smaller models (3B, 1B) and still meet KPI thresholds for accuracy?", "intent": "policy_question"}
+{"q": "Expense policy question: are meal allowances per diem or receipt-based reimbursement?", "intent": "policy_question"}
+{"q": "How does your agent handle out-of-distribution queries when no docs are relevant?", "intent": "policy_question"}
+{"q": "SOPs for managing access credentials and API keys - rotation frequency and storage method?", "intent": "policy_question"}
+{"q": "Is there a benchmark comparing your reranking model against ColBERT, Rankzilla, or industry standards?", "intent": "policy_question"}
+{"q": "what documentation exists for disaster recovery and business continuity procedures", "intent": "policy_question"}
+{"q": "whats our policy on remote work after the merger last quarter?", "intent": "policy_question"}
+{"q": "How do I request an exception to the PTO carryover limit?", "intent": "policy_question"}
+{"q": "can u explain how the reranker decides which docs to surface first in our RAG pipeline", "intent": "policy_question"}
+{"q": "WHAT'S THE COMPLIANCE REQUIREMENT FOR HANDLING PII IN CUSTOMER EMAILS", "intent": "policy_question"}
+{"q": "Does our fine-tuned model support batch inference or only single requests?", "intent": "policy_question"}
+{"q": "our SOP says we need manager approval but my manager is on sabbatical", "intent": "policy_question"}
+{"q": "How is token latency measured in production and what's our p99 target?", "intent": "policy_question"}
+{"q": "procedure for escalating a data breach suspicion to legal?", "intent": "policy_question"}
+{"q": "Why does the retrieval sometimes pull irrelevant chunks even with high similarity scores", "intent": "policy_question"}
+{"q": "Is there a policy preventing us from using open-source models with GPL licenses?", "intent": "policy_question"}
+{"q": "what hyperparameters did the ML team use when training the current 7B model", "intent": "policy_question"}
+{"q": "Can employees in the EU access our AI assistant or is there a GDPR blocker?", "intent": "policy_question"}
+{"q": "how does the agentic orchestration layer decide between calling the search tool vs the calculator", "intent": "policy_question"}
+{"q": "Do we have an SLA for how quickly support tickets must be triaged", "intent": "policy_question"}
+{"q": "observability question: are we tracking embedding model drift over time", "intent": "policy_question"}
+{"q": "whats the process if I disagree with my performance review score", "intent": "policy_question"}
+{"q": "Load testing results showed degradation at 500 concurrent users - is that acceptable", "intent": "policy_question"}
+{"q": "Policy clarification needed: can contractors access the internal knowledge base", "intent": "policy_question"}
+{"q": "why does reranking sometimes hurt retrieval performance instead of improving it", "intent": "policy_question"}
+{"q": "Is fine-tuning on proprietary data allowed given our data residency commitments?", "intent": "policy_question"}
+{"q": "Our KPI dashboard shows 12% of queries get zero relevant results - root cause?", "intent": "policy_question"}
+{"q": "procedure for requesting a new software tool license", "intent": "policy_question"}
+{"q": "Does the model support function calling and if so which schemas are validated", "intent": "policy_question"}
+{"q": "What's the compliance story around model hallucinations in regulated domains", "intent": "policy_question"}
+{"q": "how do we handle security patches for the embedding model in production without downtime", "intent": "policy_question"}
+{"q": "Is there a policy on storing conversation logs for model improvement?", "intent": "policy_question"}
+{"q": "why is cold start latency so high when the knowledge base hasn't changed", "intent": "policy_question"}
+{"q": "Employee handbook says we comply with SOX but what does that actually mean for our team", "intent": "policy_question"}
+{"q": "Can we increase the context window size without retraining or just adjust inference params", "intent": "policy_question"}
+{"q": "SOP for dealing with a vendor who breaches our data sharing agreement?", "intent": "policy_question"}
+{"q": "How many retrieval attempts does the system make before giving up on a query", "intent": "policy_question"}
+{"q": "Policy question: are we allowed to share anonymized performance data with research partners", "intent": "policy_question"}
+{"q": "what's the accuracy gap between our small 3B model and the larger 13B baseline", "intent": "policy_question"}
+{"q": "Do we monitor for prompt injection attempts and how do we respond", "intent": "policy_question"}
+{"q": "Compliance check needed: our RAG sources include some pre-2018 archived documents", "intent": "policy_question"}
+{"q": "How is model fairness being tracked across demographic groups in production", "intent": "policy_question"}
+{"q": "procedure for requesting elevated permissions to view system logs", "intent": "policy_question"}
+{"q": "Does our licensing agreement with the model provider restrict fine-tuning or deployment regions", "intent": "policy_question"}
+{"q": "Why does the reranker latency spike during off-peak hours when load is lower", "intent": "policy_question"}
+{"q": "Is there a policy on using our AI assistant to generate content for external clients", "intent": "policy_question"}
+{"q": "how do we handle PII in our RAG retrieval pipeline without exposing sensitive data?", "intent": "policy_question"}
+{"q": "whats the difference between our reranking models and why did we switch from cross-encoder to listwise?", "intent": "policy_question"}
+{"q": "Can someone explain our PTO carryover policy for contractors?", "intent": "policy_question"}
+{"q": "does the agent framework support multi-turn context windows longer than 32k tokens?", "intent": "policy_question"}
+{"q": "Our compliance dept needs to know: are we logging all model inference calls for audit trails?", "intent": "policy_question"}
+{"q": "why is latency spiking on Tuesdays around 2pm EST?", "intent": "policy_question"}
+{"q": "fine-tuning a 7B model - should we use LoRA or QLoRA given our GPU memory constraints?", "intent": "policy_question"}
+{"q": "how many hops can the retrieval agent make before it hits the timeout threshold?", "intent": "policy_question"}
+{"q": "Is there a formal incident response procedure if our model starts hallucinating at scale?", "intent": "policy_question"}
+{"q": "Load testing showed 45% degradation under 10k concurrent requests - root cause analysis?", "intent": "policy_question"}
+{"q": "what's our policy on using open source LLMs with commercial restrictions?", "intent": "policy_question"}
+{"q": "Can the reranking layer be bypassed for latency-critical queries, or does that tank relevance?", "intent": "policy_question"}
+{"q": "SOX compliance question: do we need to version control every hyperparameter change?", "intent": "policy_question"}
+{"q": "observability - which metrics matter most: MRR, NDCG, or mean reciprocal rank for our use case?", "intent": "policy_question"}
+{"q": "why doesnt the agent retry failed retrieval calls automatically?", "intent": "policy_question"}
+{"q": "Our license for the base model expires next quarter - migration plan?", "intent": "policy_question"}
+{"q": "Whats the KPI threshold before we escalate to the exec team?", "intent": "policy_question"}
+{"q": "can we deploy different model versions A/B simultaneously without splitting the inference cluster?", "intent": "policy_question"}
+{"q": "Security question: is the embedding model vulnerable to prompt injection attacks?", "intent": "policy_question"}
+{"q": "how should we handle the cold start problem for new retrieval indices?", "intent": "policy_question"}
+{"q": "Does our agent support tool use / function calling or is it retrieval-only?", "intent": "policy_question"}
+{"q": "what's the policy on employees accessing customer interaction logs for debugging?", "intent": "policy_question"}
+{"q": "fine tune hyperparams: learning rate 2e-4, warmup 500 steps - are these reasonable for a 13B model?", "intent": "policy_question"}
+{"q": "Why is reranking recall worse than retrieval recall? Shouldnt reranking improve it?", "intent": "policy_question"}
+{"q": "Our compliance audit flagged that we're not logging model confidence scores - can we add this?", "intent": "policy_question"}
+{"q": "Is there a max token budget per query or can agents request unlimited context?", "intent": "policy_question"}
+{"q": "Load testing methodology - should we simulate realistic traffic patterns or just hammer it?", "intent": "policy_question"}
+{"q": "kpi tracking: can we export model performance metrics to our BI platform weekly?", "intent": "policy_question"}
+{"q": "Model license says 'non-commercial use only' - does internal tool usage count as commercial?", "intent": "policy_question"}
+{"q": "Observability gap: we dont have visibility into reranking latency breakdown by component", "intent": "policy_question"}
+{"q": "should we quantize the reranker to int8 for faster inference or will accuracy tank?", "intent": "policy_question"}
+{"q": "Policy question: can engineers self-approve pulling new datasets for fine-tuning?", "intent": "policy_question"}
+{"q": "agent architecture - is there a circuit breaker if retrieval takes >5 seconds?", "intent": "policy_question"}
+{"q": "Why arent we monitoring the embedding model drift over time?", "intent": "policy_question"}
+{"q": "What's our SLA if the RAG system returns zero results for a valid query?", "intent": "policy_question"}
+{"q": "fine-tuning checkpoint management - how many versions should we keep before cleanup?", "intent": "policy_question"}
+{"q": "Does the reranking model support batching or does it process queries serially?", "intent": "policy_question"}
+{"q": "Our data retention policy says delete logs after 90 days - does this include model training data?", "intent": "policy_question"}
+{"q": "KPI dashboard is missing inference cost per query - can someone add that?", "intent": "policy_question"}
+{"q": "Load test results: p99 latency is 8.2s, p95 is 2.1s - is this normal distribution skew?", "intent": "policy_question"}
+{"q": "can you check the status of SKU-042 for me?", "intent": "lookup"}
+{"q": "whats the current qty on sku156?", "intent": "lookup"}
+{"q": "I need details for LOT-00089", "intent": "lookup"}
+{"q": "Status check: SKU-203", "intent": "lookup"}
+{"q": "lot 12 - how many units do we have in stock?", "intent": "lookup"}
+{"q": "Could you pull up information on SKU-445 please", "intent": "lookup"}
+{"q": "sku-078 inventory level?", "intent": "lookup"}
+{"q": "what's the status on LOT-00156? need it asap", "intent": "lookup"}
+{"q": "Check LOT-33 for me", "intent": "lookup"}
+{"q": "Details on sku299 - is it in stock?", "intent": "lookup"}
+{"q": "Can I get an update on SKU-511?", "intent": "lookup"}
+{"q": "lot00067 - what's the count?", "intent": "lookup"}
+{"q": "I'm looking for info on sku-084, specifically quantity on hand", "intent": "lookup"}
+{"q": "Status of LOT-00201?", "intent": "lookup"}
+{"q": "sku 445 - do we still have inventory?", "intent": "lookup"}
+{"q": "Need to know about lot 88 urgently", "intent": "lookup"}
+{"q": "What's available for SKU-333?", "intent": "lookup"}
+{"q": "can u check sku-156 stock level", "intent": "lookup"}
+{"q": "LOT-00045 details plz", "intent": "lookup"}
+{"q": "Is SKU-090 currently available? checking quantity", "intent": "lookup"}
+{"q": "lot 5 - need full details", "intent": "lookup"}
+{"q": "Checking on sku078 - what's the status?", "intent": "lookup"}
+{"q": "Could you look up LOT-00234 inventory for me", "intent": "lookup"}
+{"q": "sku-512 - is this in stock and how much?", "intent": "lookup"}
+{"q": "What do we have for lot-99?", "intent": "lookup"}
+{"q": "SKU-667 status report needed", "intent": "lookup"}
+{"q": "sku 201 - quantity check please", "intent": "lookup"}
+{"q": "Details needed for LOT-00088 asap", "intent": "lookup"}
+{"q": "can you confirm stock on sku-333?", "intent": "lookup"}
+{"q": "lot 44 - how many units remaining?", "intent": "lookup"}
+{"q": "I need the current status on SKU-045", "intent": "lookup"}
+{"q": "sku-789 inventory?", "intent": "lookup"}
+{"q": "LOT-00156 - what's the situation with this batch", "intent": "lookup"}
+{"q": "Check quantity for lot00012 please", "intent": "lookup"}
+{"q": "SKU-099 - need details on availability", "intent": "lookup"}
+{"q": "sku 666 stock level check", "intent": "lookup"}
+{"q": "What information do you have on LOT-00500?", "intent": "lookup"}
+{"q": "can i get a status update on sku-234", "intent": "lookup"}
+{"q": "lot 77 - do we have any left?", "intent": "lookup"}
+{"q": "SKU-401 current inventory details", "intent": "lookup"}
+{"q": "Can you check the current stock level for SKU-047?", "intent": "lookup"}
+{"q": "whats the status on lot-00128", "intent": "lookup"}
+{"q": "I need details about sku 312", "intent": "lookup"}
+{"q": "LOT-00089 - how many units do we have left?", "intent": "lookup"}
+{"q": "Check inventory for SKU-156 please", "intent": "lookup"}
+{"q": "lot 73 - is this still in production?", "intent": "lookup"}
+{"q": "what's the ETA on SKU-203?", "intent": "lookup"}
+{"q": "Can u pull up info on LOT-00215?", "intent": "lookup"}
+{"q": "sku-441 quantity check asap", "intent": "lookup"}
+{"q": "Details on lot00067 pls", "intent": "lookup"}
+{"q": "I'm looking for the specs on SKU-089. Can you help?", "intent": "lookup"}
+{"q": "LOT-00334 status update needed ASAP", "intent": "lookup"}
+{"q": "how many left of sku 556?", "intent": "lookup"}
+{"q": "Pull the details for lot-00012 when you get a chance", "intent": "lookup"}
+{"q": "SKU-778 - is this backordered?", "intent": "lookup"}
+{"q": "can you look up lot 91 for me", "intent": "lookup"}
+{"q": "what's in stock for sku-623?", "intent": "lookup"}
+{"q": "LOT-00445 - do we still have any?", "intent": "lookup"}
+{"q": "need to know about SKU-034 rn", "intent": "lookup"}
+{"q": "lot 156 inventory count please", "intent": "lookup"}
+{"q": "Is SKU-299 available or out of stock?", "intent": "lookup"}
+{"q": "checking on lot-00501 delivery date", "intent": "lookup"}
+{"q": "sku 412 - how many units shipped this week?", "intent": "lookup"}
+{"q": "LOT-00088 quantity breakdown by warehouse", "intent": "lookup"}
+{"q": "quick check on SKU-667 stock", "intent": "lookup"}
+{"q": "lot00234 - where is this in the fulfillment queue?", "intent": "lookup"}
+{"q": "Can you give me the current status for sku-345?", "intent": "lookup"}
+{"q": "LOT-00156 expiration date and remaining shelf life?", "intent": "lookup"}
+{"q": "what do we have for SKU-778 right now", "intent": "lookup"}
+{"q": "lot 44 - last received date and condition notes", "intent": "lookup"}
+{"q": "sku-089 allocation across all distribution centers", "intent": "lookup"}
+{"q": "Is LOT-00322 ready to ship or still processing?", "intent": "lookup"}
+{"q": "SKU-234 - total units in transit", "intent": "lookup"}
+{"q": "lot-00667 serial numbers and batch codes", "intent": "lookup"}
+{"q": "how much inventory on sku 501", "intent": "lookup"}
+{"q": "LOT-00199 - defect rate and quality status?", "intent": "lookup"}
+{"q": "quick lookup on SKU-412 please", "intent": "lookup"}
+{"q": "lot 78 - which customer order does this fulfill", "intent": "lookup"}
+{"q": "sku-556 cost per unit and margin info", "intent": "lookup"}
+{"q": "LOT-00089 - storage location and bin assignment?", "intent": "lookup"}
+{"q": "what's the status on lot 12834", "intent": "lookup"}
+{"q": "I need details about sku412 asap", "intent": "lookup"}
+{"q": "LOT-00156 - is this still in warehouse?", "intent": "lookup"}
+{"q": "how many units do we have left of SKU-089", "intent": "lookup"}
+{"q": "lot55 quantity check plz", "intent": "lookup"}
+{"q": "Can someone pull up info on SKU-203?", "intent": "lookup"}
+{"q": "status of LOT-00892 rn?", "intent": "lookup"}
+{"q": "sku-178 - what's our current inventory", "intent": "lookup"}
+{"q": "lot 3344 - is it allocated yet", "intent": "lookup"}
+{"q": "Need to verify SKU-001 details before I approve", "intent": "lookup"}
+{"q": "whats the quantity remaining for lot-00067", "intent": "lookup"}
+{"q": "SKU099 - do we still have stock?", "intent": "lookup"}
+{"q": "can i get a status update on LOT-00445 pls", "intent": "lookup"}
+{"q": "inventory check: sku567", "intent": "lookup"}
+{"q": "lot 9912 - how many units r available", "intent": "lookup"}
+{"q": "Is SKU-334 in stock or backordered?", "intent": "lookup"}
+{"q": "LOT-00023 details needed urgently", "intent": "lookup"}
+{"q": "sku-88 current count?", "intent": "lookup"}
+{"q": "What's the status of lot00156 in our system", "intent": "lookup"}
+{"q": "can u tell me if SKU-412 is available", "intent": "lookup"}
+{"q": "lot-444 quantity and location info", "intent": "lookup"}
+{"q": "sku 203 - how much do we have", "intent": "lookup"}
+{"q": "LOT-00789 - check if this has been shipped yet", "intent": "lookup"}
+{"q": "current stock for SKU-055?", "intent": "lookup"}
+{"q": "lot 1122 - is this item still available for order", "intent": "lookup"}
+{"q": "Can you look up sku-667 inventory for me", "intent": "lookup"}
+{"q": "LOT-00034 status check needed asap!!", "intent": "lookup"}
+{"q": "how many of sku412 left in stock", "intent": "lookup"}
+{"q": "lot00078 - what's the condition and qty", "intent": "lookup"}
+{"q": "SKU-199 - verify we have at least 50 units", "intent": "lookup"}
+{"q": "lot-5566 details - is it ready to ship", "intent": "lookup"}
+{"q": "sku 44 quantity check", "intent": "lookup"}
+{"q": "Can I get details on LOT-00290 rn", "intent": "lookup"}
+{"q": "what's the current count for SKU-333", "intent": "lookup"}
+{"q": "lot 667 - check if allocated to any orders", "intent": "lookup"}
+{"q": "sku-021 - do we have any in stock", "intent": "lookup"}
+{"q": "LOT-00412 - need to know if this is available", "intent": "lookup"}
+{"q": "inventory status for sku789 please", "intent": "lookup"}
+{"q": "lot00999 quantity and last movement date", "intent": "lookup"}
+{"q": "pls approve SKU-4782 for production run, Quality flagged it but I've reviewed the docs", "intent": "transaction"}
+{"q": "Move lot B-2019-445 from quarantine to active inventory asap", "intent": "transaction"}
+{"q": "cancel order PO-88234, customer changed their mind this morning", "intent": "transaction"}
+{"q": "Release shipment SHP-6721 to carrier - all paperwork checks out", "intent": "transaction"}
+{"q": "UPDATE batch LT-5544-A expiry date to 2026-03-15 in system", "intent": "transaction"}
+{"q": "quarantine SKU 7743-RED immediately, possible contamination reported", "intent": "transaction"}
+{"q": "delete duplicate entry for order ORD-33891, we already processed this", "intent": "transaction"}
+{"q": "Recall all units of SKU-2290-BLK manufactured between Jan 5-12", "intent": "transaction"}
+{"q": "Approve requisition REQ-9901 for emergency stock transfer to warehouse 3", "intent": "transaction"}
+{"q": "move lot 20240118-PHARMA from cold storage to distribution center", "intent": "transaction"}
+{"q": "Cancel backorder BO-5566, supplier cant fulfill til Q3", "intent": "transaction"}
+{"q": "release batch TST-8834 - final QC passed this afternoon", "intent": "transaction"}
+{"q": "UPDATE tracking info for shipment SHP-3344, new carrier assigned", "intent": "transaction"}
+{"q": "Quarantine SKU-1567-GRN, we got reports of defects frm 3 customers", "intent": "transaction"}
+{"q": "delete order ORD-12278 from system, marked as test data by mistake", "intent": "transaction"}
+{"q": "Recall batch #LT-99-2024-447, potential batch drift detected in analysis", "intent": "transaction"}
+{"q": "Approve the shipment SHP-7721 - invoice and BOL both signed", "intent": "transaction"}
+{"q": "move SKU 4455-YEL from bin C14 to bin A02 in warehouse", "intent": "transaction"}
+{"q": "Cancel subscription order SUB-4422, customer called to terminate", "intent": "transaction"}
+{"q": "Release lot B-3389 from hold status - customer credit verified", "intent": "transaction"}
+{"q": "UPDATE SKU-5678 description, add 'hypoallergenic' to product specs", "intent": "transaction"}
+{"q": "quarantine entire batch LT-440-A, shelf life issue identified", "intent": "transaction"}
+{"q": "Delete duplicate shipment record SHP-6655, system glitch created it", "intent": "transaction"}
+{"q": "Recall SKU-8801-BLUE - manufacturing defect found in safety test", "intent": "transaction"}
+{"q": "Approve expedited shipment SHP-4433, client willing to pay rush fee", "intent": "transaction"}
+{"q": "move batch 2024-JAN-556 frm quarantine 2 ready 4 shipment", "intent": "transaction"}
+{"q": "Cancel PO-7722 with vendor, we sourced from alternate supplier", "intent": "transaction"}
+{"q": "Release SKU-3344-GRN - storage hold expired, clear to sell", "intent": "transaction"}
+{"q": "UPDATE order ORD-44556 qty from 500 to 450, customer reduction request", "intent": "transaction"}
+{"q": "Quarantine lot LT-JUL-2024-88, temp excursion during transport", "intent": "transaction"}
+{"q": "Delete order ORD-88899 - never confirmed payment received", "intent": "transaction"}
+{"q": "Recall shipment SHP-9988, wrong product was packed by accident", "intent": "transaction"}
+{"q": "Approve batch LT-5555-C for commercial release after retest", "intent": "transaction"}
+{"q": "Move SKU 1122-RED from returns to saleable inventory", "intent": "transaction"}
+{"q": "Cancel standing order SO-3344, client relationship ended", "intent": "transaction"}
+{"q": "Release hold on shipment SHP-2211 - all compliance docs attached", "intent": "transaction"}
+{"q": "UPDATE lot LT-6644 storage location frm WH-A to WH-B immediately", "intent": "transaction"}
+{"q": "Quarantine SKU-7788-YEL pending investigation of supplier complaint", "intent": "transaction"}
+{"q": "Delete test batch entry LT-TEST-001, no longer needed", "intent": "transaction"}
+{"q": "Recall order ORD-5566 - customer reported incorrect item received", "intent": "transaction"}
+{"q": "Pls approve SKU-4782 for production release ASAP", "intent": "transaction"}
+{"q": "quarantine lot B-2024-556 immediately due to failed QC", "intent": "transaction"}
+{"q": "can you update order PO-89234 delivery date to next friday?", "intent": "transaction"}
+{"q": "DELETE batch 2024-JAN-447 from inventory system", "intent": "transaction"}
+{"q": "Move shipment SHIP-15643 from hold to ready for dispatch", "intent": "transaction"}
+{"q": "recall all units of SKU 7739-RED from warehouse 3", "intent": "transaction"}
+{"q": "Cancel order OD-45821 - customer changed their mind", "intent": "transaction"}
+{"q": "approve release of LOT-2024-0892 for customer shipment", "intent": "transaction"}
+{"q": "Update SKU-9201 stock count, physical shows 347 not 412", "intent": "transaction"}
+{"q": "quarantine BATCH-MAR-2024-01 pending investigation results", "intent": "transaction"}
+{"q": "Move PO-56789 to priority fulfillment queue", "intent": "transaction"}
+{"q": "delete the test order OD-TEST-9999 from system", "intent": "transaction"}
+{"q": "Recall shipment SHIP-22456 back to warehouse immediately", "intent": "transaction"}
+{"q": "Can we cancel LOT-B1847 its defective", "intent": "transaction"}
+{"q": "approve SKU-3344-BLK for shelf stocking tomorrow morning", "intent": "transaction"}
+{"q": "update batch 2024-FEB-334 expiration date to 6/15/24", "intent": "transaction"}
+{"q": "Move order OD-78945 from pending to confirmed status", "intent": "transaction"}
+{"q": "quarantine all units SKU 5566-GREY until retest complete", "intent": "transaction"}
+{"q": "Delete duplicate shipment record SHIP-11223", "intent": "transaction"}
+{"q": "release lot C-2024-229 approved for distribution", "intent": "transaction"}
+{"q": "Cancel PO-34567 supplier says 4 week delay now", "intent": "transaction"}
+{"q": "Recall batch 2024-APR-778 quality issue found post-shipment", "intent": "transaction"}
+{"q": "approve moving SKU-8821 from quarantine to active inventory", "intent": "transaction"}
+{"q": "Update order OD-90123 customer wants expedited shipping instead", "intent": "transaction"}
+{"q": "move shipment SHIP-56234 to cold storage dock B", "intent": "transaction"}
+{"q": "quarantine SKU 2211-YEL lot 2024-MAR-556 until cleared", "intent": "transaction"}
+{"q": "Delete order OD-88888 it was entered by mistake twice", "intent": "transaction"}
+{"q": "Cancel LOT-2024-0445 due to supplier recall notice", "intent": "transaction"}
+{"q": "approve release of batch 2024-MAY-667 for production", "intent": "transaction"}
+{"q": "Update SKU-7744 description typo needs correction urgently", "intent": "transaction"}
+{"q": "Move PO-12345 from backorder to partial fulfillment status", "intent": "transaction"}
+{"q": "recall shipment SHIP-33445 customer reported damaged units", "intent": "transaction"}
+{"q": "quarantine 500 units SKU-1234-WHT pending variance investigation", "intent": "transaction"}
+{"q": "Delete test batch BATCH-TEST-001 from active records", "intent": "transaction"}
+{"q": "approve SKU-6655-GRN release from quarantine hold", "intent": "transaction"}
+{"q": "Cancel order OD-77654 PO cancelled by procurement", "intent": "transaction"}
+{"q": "Update LOT-2024-0556 lot number entry was incorrect", "intent": "transaction"}
+{"q": "move batch 2024-JUN-445 to secondary warehouse location C", "intent": "transaction"}
+{"q": "recall all SHIP-44556 units back immediately defect found", "intent": "transaction"}
+{"q": "quarantine order OD-65432 pending customer inspection approval", "intent": "transaction"}
+{"q": "pls approve SKU 447829 for production run, quality check passed yesterday", "intent": "transaction"}
+{"q": "CANCEL order #PO-88821 immediately - customer went bankrupt", "intent": "transaction"}
+{"q": "move batch LOT-2024-556 from quarantine to cold storage zone C", "intent": "transaction"}
+{"q": "delete shipment tracking SHP-445821 from system, was entered in error", "intent": "transaction"}
+{"q": "Update SKU 921847 expiration date to 2026-03-15 in inventory", "intent": "transaction"}
+{"q": "recall all units of batch #MFG-7743 due to component defect", "intent": "transaction"}
+{"q": "can u release the hold on order 556821? client is waiting", "intent": "transaction"}
+{"q": "QUARANTINE lot 441829-A pending microbial test results", "intent": "transaction"}
+{"q": "Change shipment SHP-221847 destination to warehouse 4 instead of 3", "intent": "transaction"}
+{"q": "approve batch #QA-8821 for customer shipment, docs attached", "intent": "transaction"}
+{"q": "DELETE old SKU 334421 from active catalog - discontinued item", "intent": "transaction"}
+{"q": "Move LOT-2024-7821 to temperature controlled storage immediately", "intent": "transaction"}
+{"q": "Update order #PO-556821 qty from 500 to 475 units pls", "intent": "transaction"}
+{"q": "cancel shipment SHP-8821 reroute to secondary distribution center", "intent": "transaction"}
+{"q": "Recall batch MFG-445821 from field - safety concern identified", "intent": "transaction"}
+{"q": "release SKU 776821 from QC hold, all tests passed", "intent": "transaction"}
+{"q": "quarantine shipment #SHP-334421 pending customs clearance docs", "intent": "transaction"}
+{"q": "approve LOT-2024-8821 for production, materials verified", "intent": "transaction"}
+{"q": "Move batch #441829 from dock to warehouse 2 storage", "intent": "transaction"}
+{"q": "UPDATE order 221847 - expedite shipping to priority status", "intent": "transaction"}
+{"q": "delete sku 556821 variant from webstore, out of stock permanently", "intent": "transaction"}
+{"q": "CANCEL batch MFG-334421 production run, raw materials delayed", "intent": "transaction"}
+{"q": "Recall all shipments with LOT-7743 from retail locations asap", "intent": "transaction"}
+{"q": "release hold on order PO-8821, payment cleared this morning", "intent": "transaction"}
+{"q": "quarantine batch #QA-221847 - retest required on 3 samples", "intent": "transaction"}
+{"q": "approve shipment SHP-441829 for delivery, all docs complete", "intent": "transaction"}
+{"q": "move SKU 334421 inventory from warehouse 1 to warehouse 3", "intent": "transaction"}
+{"q": "update batch LOT-2024-556 storage location in system", "intent": "transaction"}
+{"q": "CANCEL order 776821 per customer request, full refund approved", "intent": "transaction"}
+{"q": "delete shipment record SHP-556821, duplicate entry in database", "intent": "transaction"}
+{"q": "recall batch MFG-8821 immediately - labeling error on packaging", "intent": "transaction"}
+{"q": "Approve LOT-441829 for customer release, quality sign-off done", "intent": "transaction"}
+{"q": "Move quarantined batch #2024-7743 to release area after inspection", "intent": "transaction"}
+{"q": "Update SKU 221847 pricing in system to $12.50 per unit", "intent": "transaction"}
+{"q": "QUARANTINE order PO-334421 pending supplier documentation", "intent": "transaction"}
+{"q": "release batch #QA-8821 from hold - all requirements satisfied", "intent": "transaction"}
+{"q": "Cancel shipment SHP-7743 redirect inventory to backorder queue", "intent": "transaction"}
+{"q": "approve batch MFG-221847 for manufacturing, supply chain cleared", "intent": "transaction"}
+{"q": "move LOT-2024-334421 to climate controlled section B immediately", "intent": "transaction"}
+{"q": "DELETE outdated SKU 441829 from inventory management system", "intent": "transaction"}
+{"q": "why is my sourdough starter bubbling but not rising? ive been feeding it daily for a week", "intent": "out_of_scope"}
+{"q": "Can u tell me who won the 2019 world series?", "intent": "out_of_scope"}
+{"q": "write me a haiku about procrastination", "intent": "out_of_scope"}
+{"q": "whats the deal with cryptocurrency anyway i dont get it", "intent": "out_of_scope"}
+{"q": "Hey, is it normal for my cat to sleep 20 hours a day or should I be worried?", "intent": "out_of_scope"}
+{"q": "did meryl streep ever win an oscar", "intent": "out_of_scope"}
+{"q": "how do i calculate compound interest for my savings account", "intent": "out_of_scope"}
+{"q": "WHAT'S THE WEATHER GONNA BE LIKE TOMORROW IN SEATTLE", "intent": "out_of_scope"}
+{"q": "can you explain quantum entanglement like im 5 years old", "intent": "out_of_scope"}
+{"q": "tell me a joke about accountants", "intent": "out_of_scope"}
+{"q": "how much does a ceo typically make at fortune 500 companies", "intent": "out_of_scope"}
+{"q": "whats a good marinade for chicken breast thats not teriyaki", "intent": "out_of_scope"}
+{"q": "does pineapple actually belong on pizza", "intent": "out_of_scope"}
+{"q": "i need a poem about missing someone", "intent": "out_of_scope"}
+{"q": "did the dolphins beat the patriots last sunday", "intent": "out_of_scope"}
+{"q": "how do i remove red wine stains from carpet", "intent": "out_of_scope"}
+{"q": "whos dating who in the kardashian family rn", "intent": "out_of_scope"}
+{"q": "explain the electoral college to me please", "intent": "out_of_scope"}
+{"q": "what are some good podcasts about true crime", "intent": "out_of_scope"}
+{"q": "my friend is being distant, should i confront them about it", "intent": "out_of_scope"}
+{"q": "how many calories in an average slice of pizza", "intent": "out_of_scope"}
+{"q": "is it rude to ask someone their age", "intent": "out_of_scope"}
+{"q": "what year did the titanic sink", "intent": "out_of_scope"}
+{"q": "give me 3 dinner ideas for picky eaters", "intent": "out_of_scope"}
+{"q": "why do we yawn when other people yawn", "intent": "out_of_scope"}
+{"q": "how much does Elon Musk make per second", "intent": "out_of_scope"}
+{"q": "is coffee bad for your teeth", "intent": "out_of_scope"}
+{"q": "tell me something random i dont know", "intent": "out_of_scope"}
+{"q": "whats the best way to learn spanish fast", "intent": "out_of_scope"}
+{"q": "did taylor swift and travis kelce actually break up", "intent": "out_of_scope"}
+{"q": "how do i get better at chess", "intent": "out_of_scope"}
+{"q": "why is the sky blue... no wait, what about at sunset", "intent": "out_of_scope"}
+{"q": "recipes for meal prep on a budget???", "intent": "out_of_scope"}
+{"q": "is it ever okay to text an ex", "intent": "out_of_scope"}
+{"q": "how many countries are in the world rn", "intent": "out_of_scope"}
+{"q": "write a funny poem about my dog eating my homework", "intent": "out_of_scope"}
+{"q": "what happened in the super bowl halftime show last year", "intent": "out_of_scope"}
+{"q": "should i quit my job or is that crazy", "intent": "out_of_scope"}
+{"q": "how long does it take to learn guitar", "intent": "out_of_scope"}
+{"q": "whats the ceo salary at apple inc", "intent": "out_of_scope"}
+{"q": "whats the best way to cook a ribeye steak medium rare without drying it out", "intent": "out_of_scope"}
+{"q": "Can you tell me a funny joke about programming?", "intent": "out_of_scope"}
+{"q": "hows the weather gonna be this weekend in denver", "intent": "out_of_scope"}
+{"q": "who won the super bowl in 2015", "intent": "out_of_scope"}
+{"q": "I need help writing a poem about my cat named whiskers", "intent": "out_of_scope"}
+{"q": "what's the average salary for a ceo in the tech industry", "intent": "out_of_scope"}
+{"q": "do u know any good pasta carbonara recipes that are authentic", "intent": "out_of_scope"}
+{"q": "tell me something intresting about the moon", "intent": "out_of_scope"}
+{"q": "How do I know if my relationship is toxic?", "intent": "out_of_scope"}
+{"q": "whats justin biebers net worth rn", "intent": "out_of_scope"}
+{"q": "can u help me understand quantum physics basics", "intent": "out_of_scope"}
+{"q": "did lebron james play college basketball", "intent": "out_of_scope"}
+{"q": "I'm feeling really anxious about my job interview tomorrow any tips", "intent": "out_of_scope"}
+{"q": "What's the capital of Kazakhstan?", "intent": "out_of_scope"}
+{"q": "recipe for homemade sourdough starter plz", "intent": "out_of_scope"}
+{"q": "is taylor swift dating anyone currently", "intent": "out_of_scope"}
+{"q": "How many bones does a giraffe have", "intent": "out_of_scope"}
+{"q": "help me write a haiku about coffee", "intent": "out_of_scope"}
+{"q": "what sport should i try im not athletic at all", "intent": "out_of_scope"}
+{"q": "who invented the internet actually", "intent": "out_of_scope"}
+{"q": "im scared of spiders any advice", "intent": "out_of_scope"}
+{"q": "Best way to learn spanish fluently in 6 months", "intent": "out_of_scope"}
+{"q": "whats the deal with elon musk and x lately", "intent": "out_of_scope"}
+{"q": "can u explain cryptocurrency to me like im five", "intent": "out_of_scope"}
+{"q": "how much does an astronaut make per year", "intent": "out_of_scope"}
+{"q": "tell me about the titanic disaster what really happened", "intent": "out_of_scope"}
+{"q": "i want to start a garden but im a total beginner where do i start", "intent": "out_of_scope"}
+{"q": "Is Beyonce the greatest performer ever", "intent": "out_of_scope"}
+{"q": "weather forecast for next tuesday in seattle", "intent": "out_of_scope"}
+{"q": "what r some good fantasy books series to read", "intent": "out_of_scope"}
+{"q": "how do i fix my broken dishwasher myself", "intent": "out_of_scope"}
+{"q": "tell me a riddle thats actually challenging", "intent": "out_of_scope"}
+{"q": "what's oprah winfreys salary and net worth", "intent": "out_of_scope"}
+{"q": "recipe ideas for meal prep sunday healthy options", "intent": "out_of_scope"}
+{"q": "why do cats purr scientific explanation", "intent": "out_of_scope"}
+{"q": "should i quit my job and travel the world advice needed", "intent": "out_of_scope"}
+{"q": "who won wimbledon last year", "intent": "out_of_scope"}
+{"q": "can you write me a funny limerick about my boss", "intent": "out_of_scope"}
+{"q": "whats the actual truth about ancient aliens theories", "intent": "out_of_scope"}
+{"q": "im procrastinating on my project help me get motivated", "intent": "out_of_scope"}
+{"q": "whats the best way to fix a leaky kitchen faucet without calling a plumber", "intent": "out_of_scope"}
+{"q": "Can you write me a haiku about procrastination?", "intent": "out_of_scope"}
+{"q": "why do cats purr and what does it actually mean", "intent": "out_of_scope"}
+{"q": "tell me a joke thats actually funny not like the corny ones", "intent": "out_of_scope"}
+{"q": "How much does Elon Musk make per second roughly", "intent": "out_of_scope"}
+{"q": "what's the recipe for authentic pad thai sauce", "intent": "out_of_scope"}
+{"q": "did taylor swift and travis kelce break up yet", "intent": "out_of_scope"}
+{"q": "im feeling really anxious about my new job any tips", "intent": "out_of_scope"}
+{"q": "who won the world series in 1995", "intent": "out_of_scope"}
+{"q": "explain quantum entanglement like im 5 years old", "intent": "out_of_scope"}
+{"q": "whats the difference between weather and climate", "intent": "out_of_scope"}
+{"q": "can you help me write a poem for my anniversary", "intent": "out_of_scope"}
+{"q": "is it normal to be scared of commitment at 28", "intent": "out_of_scope"}
+{"q": "Who's currently the CEO of Apple and what's their background", "intent": "out_of_scope"}
+{"q": "gimme some easy dessert recipes using just eggs flour and sugar", "intent": "out_of_scope"}
+{"q": "why is the sky blue actually explain the science", "intent": "out_of_scope"}
+{"q": "did anyone actually watch that new netflix show everyone talks about", "intent": "out_of_scope"}
+{"q": "how do I know if I'm being underpaid compared to industry standards", "intent": "out_of_scope"}
+{"q": "whats a good comeback for when someone roasts you", "intent": "out_of_scope"}
+{"q": "tell me about the history of pizza in italy", "intent": "out_of_scope"}
+{"q": "should I dye my hair red or keep it brown", "intent": "out_of_scope"}
+{"q": "how many super bowls has patrick mahomes won", "intent": "out_of_scope"}
+{"q": "what are some tips for better sleep hygiene", "intent": "out_of_scope"}
+{"q": "who invented the internet and when", "intent": "out_of_scope"}
+{"q": "im procrastinating on work rn send motivation", "intent": "out_of_scope"}
+{"q": "whats the average salary for a software engineer in california 2024", "intent": "out_of_scope"}
+{"q": "can u explain why people get goosebumps", "intent": "out_of_scope"}
+{"q": "best exercises for someone with lower back pain", "intent": "out_of_scope"}
+{"q": "how do I tell my friend theyre being annoying without hurting feelings", "intent": "out_of_scope"}
+{"q": "did kanye and kim ever actually get back together", "intent": "out_of_scope"}
+{"q": "whats the recipe for homemade pasta dough from scratch", "intent": "out_of_scope"}
+{"q": "why do we yawn and is it contagious", "intent": "out_of_scope"}
+{"q": "help me settle a debate is a hot dog a sandwich", "intent": "out_of_scope"}
+{"q": "who's the richest person in the world rn", "intent": "out_of_scope"}
+{"q": "write something poetic about the ocean please", "intent": "out_of_scope"}
+{"q": "how many languages does duolingo actually teach", "intent": "out_of_scope"}
+{"q": "what should I do if I hate my career choice", "intent": "out_of_scope"}
+{"q": "is cereal a soup technically speaking", "intent": "out_of_scope"}
+{"q": "tell me about the most expensive celebrity wedding ever", "intent": "out_of_scope"}
+{"q": "whats the best way to fix a leaky kitchen faucet without calling a plumber?", "intent": "out_of_scope"}
+{"q": "can you write me a haiku about autumn leaves?", "intent": "out_of_scope"}
+{"q": "why do cats purr when they're happy", "intent": "out_of_scope"}
+{"q": "Tell me a really dark joke that'll make me laugh", "intent": "out_of_scope"}
+{"q": "how much does elon musk actually make per year??", "intent": "out_of_scope"}
+{"q": "WHAT ARE THE ODDS OF ROLLING TWO SIXES IN A ROW", "intent": "out_of_scope"}
+{"q": "recipe for homemade pasta from scratch pls", "intent": "out_of_scope"}
+{"q": "is it normal to feel anxious before public speaking", "intent": "out_of_scope"}
+{"q": "who won the stanley cup in 2015", "intent": "out_of_scope"}
+{"q": "best exercises to reduce back pain?", "intent": "out_of_scope"}
+{"q": "did beyonce really write all her own lyrics", "intent": "out_of_scope"}
+{"q": "how do i know if my sourdough starter is ready", "intent": "out_of_scope"}
+{"q": "why is the sky blue tho", "intent": "out_of_scope"}
+{"q": "can you help me write a breakup text", "intent": "out_of_scope"}
+{"q": "what does the CEO of microsoft earn annually", "intent": "out_of_scope"}
+{"q": "funny poem about procrastination", "intent": "out_of_scope"}
+{"q": "is cereal a soup", "intent": "out_of_scope"}
+{"q": "how many people watch the super bowl worldwide", "intent": "out_of_scope"}
+{"q": "best way to learn guitar as an adult??", "intent": "out_of_scope"}
+{"q": "recipe for beef wellington", "intent": "out_of_scope"}
+{"q": "did marilyn monroe really say that quote", "intent": "out_of_scope"}
+{"q": "how do i stop overthinking everything", "intent": "out_of_scope"}
+{"q": "what's the salary range for a senior engineer at google", "intent": "out_of_scope"}
+{"q": "tell me about the history of pizza", "intent": "out_of_scope"}
+{"q": "is it bad to eat before bed", "intent": "out_of_scope"}
+{"q": "who has the most grammy awards ever", "intent": "out_of_scope"}
+{"q": "explain cryptocurrency without the jargon please", "intent": "out_of_scope"}
+{"q": "best workout routine for beginners??", "intent": "out_of_scope"}
+{"q": "can you write a funny limerick about my boss", "intent": "out_of_scope"}
+{"q": "how many moons does jupiter have", "intent": "out_of_scope"}
+{"q": "tips for dealing with toxic coworkers", "intent": "out_of_scope"}
+{"q": "what did taylor swift say about that rumor", "intent": "out_of_scope"}
+{"q": "how to make the perfect scrambled eggs", "intent": "out_of_scope"}
+{"q": "why do we dream", "intent": "out_of_scope"}
+{"q": "what's the net worth of jeff bezos right now", "intent": "out_of_scope"}
+{"q": "shortest poem you can make about love", "intent": "out_of_scope"}
+{"q": "is it true that goldfish have 3 second memories", "intent": "out_of_scope"}

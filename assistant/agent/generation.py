@@ -60,9 +60,30 @@ def ungrounded_tokens(answer: str, sources: list[str]) -> list[str]:
     return bad
 
 
-def extractive_answer(chunks: list[dict], max_chars: int = 400) -> tuple[str, list[int]]:
-    text = re.sub(r"^\[[^\]]*\]\s*", "", chunks[0]["text"]).strip()
-    return (text[:max_chars].rsplit(" ", 1)[0] + "…" if len(text) > max_chars else text) + " [1]", [1]
+_STOPQ = set("what is are the a an of to in for how why which does do can who when where and or be with by on".split())
+
+
+def extractive_answer(chunks: list[dict], question: str = "", max_chars: int = 420) -> tuple[str, list[int]]:
+    """Grounded by construction: pick the 1-2 source sentences that best overlap the question (not the chunk's opening)."""
+    qt = {w for w in re.findall(r"[a-z0-9\-]+", question.lower()) if w not in _STOPQ}
+    cands = []
+    for ci, c in enumerate(chunks[:3], 1):
+        body = re.sub(r"^\[[^\]]*\]\s*", "", c["text"]).strip()
+        for sent in re.split(r"(?<=[.!?;])\s+", body):
+            if len(sent) < 15: continue
+            ov = len(qt & set(re.findall(r"[a-z0-9\-]+", sent.lower()))) if qt else 0
+            cands.append((ov - 0.01 * (ci - 1), ci, sent.strip()))
+    if not cands:
+        t = re.sub(r"^\[[^\]]*\]\s*", "", chunks[0]["text"]).strip(); return t[:max_chars] + " [1]", [1]
+    ranked = sorted(cands, key=lambda x: -x[0])
+    best = [x for x in ranked[:2] if x[0] >= max(1.0, 0.5 * ranked[0][0])] if qt else cands[:1]
+    best = best or ranked[:1]
+    best.sort(key=lambda x: (x[1], cands.index(x)))
+    text, cites = "", []
+    for _, ci, sent in best:
+        if len(text) + len(sent) > max_chars and text: break
+        text += (" " if text else "") + sent.rstrip() + f" [{ci}]"; cites.append(ci)
+    return text, sorted(set(cites))
 
 
 @dataclass
@@ -105,13 +126,14 @@ class GenerationPipeline:
                                                      messages=[Message(role="system", content=VER_SYS), Message(role="user", content=user)]))
         if r.abstained or not r.parsed:
             return False, ["verifier_unavailable"], r.cost_usd, False       # fail closed
-        def norm(x): return re.sub(r"\s+", " ", x).strip().lower()
+        def norm(x): return " ".join(re.findall(r"[a-z0-9]+", x.lower()))
+        blob = norm(" ".join(srcs))
         sup = {}
         for v in r.parsed["verdicts"]:
             ok = v["supported"]
             if ok:   # deterministic proof check: the quoted evidence must literally exist in the cited source
-                src = srcs[v["source"] - 1] if 1 <= v.get("source", 0) <= len(srcs) else ""
-                ok = bool(v.get("quote")) and norm(v["quote"]) in norm(src)
+                frags = [norm(f) for f in re.split(r"\.{3}|…", v.get("quote", "")) if len(norm(f).split()) >= 3]
+                ok = bool(frags) and all(f in blob for f in frags)   # every quoted fragment must literally occur in the sources
             sup[v["i"]] = ok
         unsupported = [c for i, c in enumerate(claims) if not sup.get(i, False)]
         unsupported += [f"ungrounded value {t}" for t in bad_tokens]
@@ -142,6 +164,6 @@ class GenerationPipeline:
             res.unsupported = unsupported
             if not avail: break                                             # cannot verify -> do not retry blindly
             bad = unsupported
-        res.answer, res.citations = extractive_answer(chunks)               # grounded by construction
+        res.answer, res.citations = extractive_answer(chunks, question)               # grounded by construction
         res.mode, res.verified = "extractive_fallback", True
         return res

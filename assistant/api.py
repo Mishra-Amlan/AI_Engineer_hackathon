@@ -4,6 +4,7 @@ import time
 import collections
 import os
 import jwt
+from fastapi.responses import ORJSONResponse
 from fastapi import FastAPI, Header, HTTPException, Request, Response as HttpResponse
 from .tracing import Tracer
 from pydantic import BaseModel, ConfigDict, Field
@@ -39,7 +40,7 @@ def tenant_from_token(authorization: str | None, secret: str) -> str:
 
 
 def create_app(orchestrator, jwt_secret: str | None = None, rate_per_s: float = 0, burst: int = 0, tracer: Tracer | None = None) -> FastAPI:
-    app = FastAPI(title="Unreliable Assistant", version="0.1")
+    app = FastAPI(title="Unreliable Assistant", version="0.1", default_response_class=ORJSONResponse)
     app.state.orch = orchestrator
     app.state.started = time.time()
     app.state.counters = {"requests": 0, "errors_5xx": 0, "rate_limited": 0}

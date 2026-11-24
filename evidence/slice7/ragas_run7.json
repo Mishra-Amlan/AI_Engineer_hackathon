@@ -1,0 +1,21 @@
+{
+ "faithfulness": 1.0,
+ "hallucination_rate": 0.0,
+ "answer_relevancy": 0.666,
+ "cited_context_entity_recall": 0.839,
+ "abstention_accuracy": "5/5",
+ "answers_with_ungrounded_values": 0,
+ "modes": {
+  "generated": 16,
+  "extractive_fallback": 11,
+  "abstain": 3,
+  "regenerated": 1,
+  "canned": 3
+ },
+ "wrong_route": [],
+ "judge_failures": [],
+ "answered": 28,
+ "e2e_p50_ms": 9377,
+ "e2e_p95_ms": 17547,
+ "spent_usd": 0.0627
+}

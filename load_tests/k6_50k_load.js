@@ -7,6 +7,8 @@ const TIERS = {
   '1k':  [{ duration: '10s', target: 1000 },  { duration: '30s', target: 1000 },  { duration: '5s', target: 0 }],
   '5k':  [{ duration: '20s', target: 5000 },  { duration: '40s', target: 5000 },  { duration: '5s', target: 0 }],
   '10k': [{ duration: '30s', target: 10000 }, { duration: '40s', target: 10000 }, { duration: '5s', target: 0 }],
+  '20k': [{ duration: '40s', target: 20000 }, { duration: '40s', target: 20000 }, { duration: '5s', target: 0 }],
+  '50k-conc': [{ duration: '90s', target: 50000 }, { duration: '60s', target: 50000 }, { duration: '10s', target: 0 }],
   '50k': [{ duration: '2m', target: 10000 }, { duration: '3m', target: 50000 }, { duration: '5m', target: 50000 }, { duration: '2m', target: 0 }],
 };
 export const options = {
@@ -18,11 +20,13 @@ export const options = {
   },
   summaryTrendStats: ['avg', 'p(50)', 'p(95)', 'p(99)', 'max'],
 };
+// BASES: comma-separated base URLs; several loopback IPs lift the ~28K ephemeral-port cap of one src/dst tuple
+const BASES = (__ENV.BASES || __ENV.BASE || 'http://localhost:8000').split(',');
 const QUERIES = ['Verify batch LOT-88392 safety protocol and return triage status', 'What is the return policy?', 'How does approval work?', 'Summarize the SOP for cold chain'];
 export default function () {
   const vu = __VU, tenant = `tenant_${vu % 50}`;
   const payload = JSON.stringify({ tenant_id: tenant, user_id: `user_${vu}`, query: `${QUERIES[__ITER % QUERIES.length]} v${Math.floor(Math.random() * parseInt(__ENV.VARIANTS || '400'))}` });
-  const res = http.post(`${__ENV.BASE || 'http://localhost:8000'}/api/v1/agent/query`, payload,
+  const res = http.post(`${BASES[vu % BASES.length]}/api/v1/agent/query`, payload,
     { headers: { 'Content-Type': 'application/json', 'X-Tenant-ID': tenant } });
   check(res, {
     'status is 200': (r) => r.status === 200,

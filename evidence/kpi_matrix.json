@@ -28,7 +28,7 @@
   "KPI-05": {
    "name": "Triage p95 <=25ms",
    "status": "FAIL",
-   "detail": "live p95 2963 ms (remote LLM)"
+   "detail": "LLM-only p95 2963 ms; with local cascade 62% of queries answered locally at p95 19.5 ms, rest via LLM"
   },
   "KPI-06": {
    "name": "False refusal <=1%",
@@ -103,17 +103,17 @@
   "KPI-20": {
    "name": "Faithfulness >=0.92",
    "status": "PASS",
-   "detail": "0.977"
+   "detail": "0.974"
   },
   "KPI-21": {
    "name": "Answer relevancy >=0.90",
    "status": "FAIL",
-   "detail": "0.692"
+   "detail": "0.651"
   },
   "KPI-22": {
    "name": "Entity recall >=0.85",
    "status": "FAIL",
-   "detail": "0.833"
+   "detail": "0.839"
   },
   "KPI-23": {
    "name": "Abstention >=98%",
@@ -123,7 +123,7 @@
   "KPI-24": {
    "name": "Hallucination <=0.5%",
    "status": "FAIL",
-   "detail": "0.023"
+   "detail": "0.026"
   },
   "KPI-25": {
    "name": "TTFT p95 <=180ms",

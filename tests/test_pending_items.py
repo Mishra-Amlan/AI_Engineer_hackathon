@@ -73,3 +73,27 @@ def test_agent_registry_consistent_with_code():
     by = {r["name"]: r for r in reg}
     assert set(by["retrieval"]["tools"]) == set(RETRIEVAL_TOOLS) and set(by["execution"]["tools"]) == set(EXECUTION_TOOLS)
     assert not (set(by["retrieval"]["tools"]) & set(by["execution"]["tools"]))
+
+
+async def test_triage_local_cascade_fast_path_and_llm_deferral():
+    import json
+    from assistant.agents.triage import Route, TriageAgent
+    from assistant.config import Settings
+    from assistant.router.providers import FakeProvider
+    from assistant.router.router import ModelRouter
+    from tests.test_slice3_router import ENV, nosleep
+    class L:
+        def __init__(self, i, p): self.i, self.p = i, p
+        def predict(self, t): return self.i, self.p
+    s = Settings.load("/nonexistent", ENV); prov = FakeProvider({"t1p": json.dumps({"intent": "policy_question", "domain": "policy", "risk_tier": 1, "complexity": "low"})})
+    mk = lambda l: TriageAgent(ModelRouter(s, prov, sleep=nosleep), local=l)
+    r = await mk(L("policy_question", 0.97)).classify("t", "What is the return policy?")
+    assert r.source == "local" and r.route == Route.HYBRID_RAG and prov.calls == []              # no LLM call on the fast path
+    r = await mk(L("policy_question", 0.60)).classify("t", "What is the return policy?")          # low confidence -> LLM
+    assert r.source in ("slm", "slm+rules") and prov.calls
+    prov.calls.clear()
+    r = await mk(L("transaction", 0.99)).classify("t", "What is the return policy?")              # local says mutate, rules disagree -> LLM
+    assert prov.calls and r.route == Route.HYBRID_RAG
+    prov.calls.clear()
+    r = await mk(L("policy_question", 0.99)).classify("t", "Approve the release of LOT-12345")    # rules say transaction -> never trust local
+    assert prov.calls and r.route == Route.TRANSACTION_EXEC

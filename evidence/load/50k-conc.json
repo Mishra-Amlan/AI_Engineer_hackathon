@@ -1,0 +1,2 @@
+{"tier": "50k-conc", "status": "ABORTED", "reason": "k6 with 50,000 VUs reached ~9.1 GB RSS at 97 s of a 160 s run (host has 16 GB shared with the server and IDE; previous attempt was OOM-killed); aborted to protect the host. A first attempt on one loopback IP completed with 22% errors (ephemeral-port cap ~28K connections per src/dst tuple).",
+ "conditions": "single 4-core / 16 GB host", "result": "50K concurrent connections NOT demonstrated on this host"}

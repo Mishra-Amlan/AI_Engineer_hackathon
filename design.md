@@ -137,3 +137,9 @@ Triage, Model Router (component), Guardrails (PII, injection), Query-Rewrite, Re
 | 11 | 100-prompt red-team suite | ✅ 100% handled; rules co-developed with suite (regression guard, not independent audit) |
 | 12 | Streamlit 6-tab workbench (`app.py`) | ✅ headless tests; runs on :8501 |
 | 13 | Load ladder | ⚠ 1K PASS, 5K PASS (stub model), 10K FAIL (saturates ~1.4K RPS on 4-core host); 50K + JMeter + 1h soak NOT RUN |
+
+### Hardware-free mitigations (added after hardware was ruled out)
+- **ADR-014 Local triage cascade:** int8-ONNX embedding + softmax regression answers ~62% of queries locally (p95 19.5 ms); LLM only when confidence < 0.85 or rules disagree. Trained on 628 synthetic labels (`scripts/gen_triage_data.py`), tested on the independent hand-written set (24/24 with cascade).
+- **ADR-015 Reranker stays full-pool:** int8 ONNX is ~5x faster than fp32 torch but still 330-650 ms for 12-40 passages on this CPU; shrinking the pool cost MRR 0.86 -> 0.74, so KPI-09 is explicitly hardware-bound.
+- **ADR-016 Load-test method:** 10K/20K concurrent tiers are run at ~0.7K RPS with 10-20 s think time (host RPS ceiling ~1.4K). 50K concurrent aborted (k6 ~9 GB RSS; single-IP ~28K port cap). KPI-31..36 remain PENDING.
+

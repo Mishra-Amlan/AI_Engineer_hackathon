@@ -35,7 +35,7 @@ class TriageResult(BaseModel):
     risk_tier: int
     complexity: str
     route: Route
-    source: Literal["slm", "rules", "slm+rules"]
+    source: Literal["slm", "rules", "slm+rules", "local", "local+rules"]
     model: str | None = None
 
 
@@ -89,11 +89,17 @@ Examples:
 
 
 class TriageAgent:
-    def __init__(self, router: ModelRouter, use_model: bool = True):
-        self.router, self.use_model = router, use_model
+    def __init__(self, router: ModelRouter, use_model: bool = True, local=None, local_threshold: float = 0.85):
+        self.router, self.use_model, self.local, self.local_th = router, use_model, local, local_threshold
 
     async def classify(self, tenant_id: str, text: str, deadline_ms: int = 4000) -> TriageResult:
         rules = rules_classify(text)
+        if self.local is not None:                      # cascade: fast local classifier first, LLM only when unsure or disagreeing with rules
+            intent, p = self.local.predict(text)
+            disagree = (intent == "transaction") != (rules.intent == "transaction") or (intent == "out_of_scope") != (rules.intent == "out_of_scope")
+            if p >= self.local_th and not disagree:
+                m = TriageModelOut(intent=intent, domain=rules.domain, risk_tier=3 if intent == "transaction" else 1, complexity=rules.complexity)
+                return TriageResult(**m.model_dump(), route=route_for(m), source="local", model="local-lr")
         model_out, model_name = None, None
         if self.use_model:
             r = await self.router.complete(RouterRequest(

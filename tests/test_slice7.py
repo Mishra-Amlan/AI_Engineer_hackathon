@@ -39,6 +39,8 @@ def test_ungrounded_numbers_and_ids():
 def test_claim_split_and_extractive():
     assert len(split_claims("First claim here. Second claim here [1]. Third one!")) == 3
     a, c = extractive_answer(CH); assert a.endswith("[1]") and "Blueprint >" not in a and c == [1]
+    a2, c2 = extractive_answer(CH, "What does the circuit breaker do when a call fails twice?")
+    assert "HALTED_BREAKER" in a2 and c2 == [2] and a2.endswith("[2]")      # picks the relevant chunk/sentence, not chunk #1
 
 # ---------- generation / verification ----------
 async def test_grounded_answer_verified():

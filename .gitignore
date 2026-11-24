@@ -4,3 +4,4 @@
 .~lock.*#
 __pycache__/
 *.pyc
+models/*.onnx

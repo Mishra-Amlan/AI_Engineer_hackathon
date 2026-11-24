@@ -54,10 +54,12 @@ if _proc: _proc.terminate()
 row("Live API and tenant isolation", "Health 200, query 200, tenant retained, mismatch 403", "PENDING" if la is None else P2(la), "server not running" if la is None else "")
 rt = Path("evidence/100-prompt.json")
 row("100-prompt red-team suite", "100 prompts across 5 categories", json.loads(rt.read_text())["status"] if rt.exists() else "PENDING")
-for tier, label in [("5k", "5K load tier"), ("10k", "10K load tier"), ("50k", "50K load tier")]:
+for tier, label in [("5k", "5K load tier"), ("10k", "10K load tier"), ("20k", "20K concurrent (low RPS)"), ("50k-conc", "50K concurrent connections"), ("50k", "50K load tier")]:
     f = Path(f"evidence/load/{tier}.json")
     if f.exists():
-        d = json.loads(f.read_text()); row(label + " (stub model)", "Latency, 5xx, isolation, correctness", d["status"], f"p95 {d['p95_ms']} ms, p99 {d['p99_ms']} ms, {d['rps']} rps, err {d['err_rate']:.2%}")
+        d = json.loads(f.read_text())
+        if d.get("status") == "ABORTED": row(label, "Connections held, latency, 5xx", "PENDING", "aborted: " + d["reason"][:90]); continue
+        row(label + " (stub model)", "Latency, 5xx, isolation, correctness", d["status"], f"p95 {d['p95_ms']} ms, p99 {d['p99_ms']} ms, {d['rps']} rps, err {d['err_rate']:.2%}")
     else: row(label, "p50/p95/p99, throughput, 5xx, soak", "PENDING", "not run on this host" if tier == "50k" else "")
 row("JMeter validation", "Independent controller/worker evidence", "PENDING", "plan written; JMeter not installed")
 km = subprocess.run([sys.executable, "scripts/kpi_matrix.py"], capture_output=True, text=True)
