@@ -97,3 +97,20 @@ async def test_triage_local_cascade_fast_path_and_llm_deferral():
     prov.calls.clear()
     r = await mk(L("policy_question", 0.99)).classify("t", "Approve the release of LOT-12345")    # rules say transaction -> never trust local
     assert prov.calls and r.route == Route.TRANSACTION_EXEC
+
+
+def test_llm_reranker_mapping_and_fail_closed():
+    import json
+    from assistant.config import Settings
+    from assistant.rag.llm_rerank import LLMReranker
+    from assistant.router.providers import FakeProvider
+    from assistant.router.router import ModelRouter
+    from tests.test_slice3_router import ENV, nosleep
+    assert LLMReranker.to_logit(10) > 4 and LLMReranker.to_logit(0) < -2 and abs(LLMReranker.to_logit(3.5)) < 1e-9
+    s = Settings.load("/nonexistent", ENV)
+    ok = LLMReranker(ModelRouter(s, FakeProvider({"t2p": json.dumps({"scores": [9, 1]})}), sleep=nosleep), pool=2)
+    a, b = ok.predict([("q", "d1"), ("q", "d2"), ("q", "d3")])[:2]; assert a > b
+    assert len(ok.predict([("q", "d1"), ("q", "d2"), ("q", "d3")])) == 3
+    bad = LLMReranker(ModelRouter(s, FakeProvider({"t2p": json.dumps({"scores": [1]}), "t2f": "x", "t1p": "x", "t1f": "x"}), sleep=nosleep), pool=2)
+    import pytest
+    with pytest.raises(RuntimeError): bad.predict([("q", "d1"), ("q", "d2")])

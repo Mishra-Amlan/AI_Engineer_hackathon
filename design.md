@@ -142,4 +142,4 @@ Triage, Model Router (component), Guardrails (PII, injection), Query-Rewrite, Re
 - **ADR-014 Local triage cascade:** int8-ONNX embedding + softmax regression answers ~62% of queries locally (p95 19.5 ms); LLM only when confidence < 0.85 or rules disagree. Trained on 628 synthetic labels (`scripts/gen_triage_data.py`), tested on the independent hand-written set (24/24 with cascade).
 - **ADR-015 Reranker stays full-pool:** int8 ONNX is ~5x faster than fp32 torch but still 330-650 ms for 12-40 passages on this CPU; shrinking the pool cost MRR 0.86 -> 0.74, so KPI-09 is explicitly hardware-bound.
 - **ADR-016 Load-test method:** 10K/20K concurrent tiers are run at ~0.7K RPS with 10-20 s think time (host RPS ceiling ~1.4K). 50K concurrent aborted (k6 ~9 GB RSS; single-IP ~28K port cap). KPI-31..36 remain PENDING.
-
+- **ADR-017 (rejected) Hosted LLM listwise reranker:** built (`assistant/rag/llm_rerank.py`, off by default) and measured on the golden set: MRR 0.81, nDCG 0.78, precision 0.51, 6/29 false abstentions, p95 5.8 s, ~$0.06 per 34 queries — worse and ~4x slower than the local int8 cross-encoder (MRR 0.86). Not wired into the pipeline.
