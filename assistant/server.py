@@ -31,4 +31,4 @@ class StubOrchestrator:
         return Response(ans, "HYBRID_RAG", "r", mode="generated")
 
 
-app = create_app(StubOrchestrator())
+app = create_app(StubOrchestrator(), jwt_secret=os.getenv("API_JWT_SECRET") or None, rate_per_s=float(os.getenv("RATE_PER_TENANT_S", "0")), burst=int(os.getenv("RATE_BURST", "0")))

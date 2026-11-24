@@ -259,11 +259,11 @@ Test pyramid: unit → contract (MCP/JSON-RPC schemas) → integration (docker-c
 - [x] Million-user scale path, capacity model, load ladder (§11)
 - [x] One agent/component per feature with contracts (§12)
 - [x] Build-test-proceed process (§13)
-- [ ] AuthN/AuthZ (JWT with tenant claims, RBAC mapping to Tier 1/2/3), secrets management
+- [x] AuthN (HS256 JWT bound to tenant, optional via API_JWT_SECRET) + tier-based RBAC in harness; secrets via .env only (no vault/KMS yet)
 - [ ] Data retention / deletion (GDPR-style), PII-safe audit payloads
-- [ ] Rate limiting, quotas, API versioning (`/api/v1`), streaming contract, request deadlines
-- [ ] Prompt/model/config registry with version pinning
-- [ ] Ingestion pipeline and index freshness
+- [x] Per-tenant token-bucket rate limit (429), `/api/v1` versioning, W3C traceparent propagation; [ ] streaming contract, request deadlines pending
+- [~] Artifact registry with immutable versions exists (assistant/release.py); prompts/models not yet registered through it
+- [~] Ingestion pipeline scripted (scripts/build_corpus.py, build_vault.py); no freshness automation
 - [ ] Labeled data for Triage SLM (intent set ≥ enough per class), golden-set ownership/refresh, eval-set leakage control
 - [ ] CI/CD pipeline, environments (dev/stage/prod), IaC
 - [ ] Cost governance dashboards, per-tenant budgets

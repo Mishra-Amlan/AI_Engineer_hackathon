@@ -42,7 +42,15 @@ def live_api():
         except urllib.error.HTTPError as e: blocked = e.code == 403
         return h == 200 and r.status == 200 and body["tenant_id"] == "tenant_9" and blocked
     except Exception: return None
+import time as _t
+_proc = None
+if live_api() is None:                                     # self-contained: boot a temporary stub server
+    _proc = subprocess.Popen([sys.executable, "-m", "uvicorn", "assistant.server:app", "--port", "8000", "--log-level", "warning"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    for _ in range(40):
+        _t.sleep(0.25)
+        if live_api() is not None: break
 la = live_api()
+if _proc: _proc.terminate()
 row("Live API and tenant isolation", "Health 200, query 200, tenant retained, mismatch 403", "PENDING" if la is None else P2(la), "server not running" if la is None else "")
 rt = Path("evidence/100-prompt.json")
 row("100-prompt red-team suite", "100 prompts across 5 categories", json.loads(rt.read_text())["status"] if rt.exists() else "PENDING")
