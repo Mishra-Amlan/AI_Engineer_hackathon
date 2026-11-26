@@ -14,8 +14,9 @@ from assistant.plugins.injection import InjectionShield
 from assistant.plugins.pii import PiiRedactor
 
 st.set_page_config(page_title="Unreliable Assistant — Workbench", layout="wide")
-st.title("The Unreliable Assistant — Developer Workbench")
-T = st.tabs(["1 Architecture & Workflow", "2 Hybrid RAG Lab", "3 MCP & Plugins", "4 Memory & Graphify", "5 Red Team & Breaker", "6 KPI Scorecard & Load"])
+from ui import theme
+theme.apply(); theme.hero(); theme.kpi_strip()
+T = st.tabs(["Architecture", "RAG Lab", "MCP & Plugins", "Memory & Graphify", "Red Team", "Scorecard & Load"])
 
 @st.cache_resource
 def plugin_mgr(): return PluginManager([PiiRedactor(), InjectionShield()])
@@ -44,7 +45,8 @@ with T[0]:
     c1, c2 = st.columns([3, 2])
     with c1:
         p = Path("docs/workflow_orchestration.png")
-        st.image(str(p), caption="Gate 2 — workflow_orchestration.png (300 DPI)") if p.exists() else st.error("workflow_orchestration.png missing")
+        if p.exists(): st.image(str(p), caption="Gate 2 — workflow_orchestration.png (300 DPI)")
+        else: st.error("workflow_orchestration.png missing")
     with c2:
         st.subheader("design.md contract checklist")
         d = Path("design.md").read_text() if Path("design.md").exists() else ""
@@ -57,14 +59,14 @@ with T[0]:
     queue, harness, audit, applied = hitl_state()
     if st.button("Submit sample Tier-3 request (as alice)"):
         import asyncio
-        asyncio.run(harness.execute("transition_workflow", {"entity_id": "LOT-00044", "to_state": "RELEASED"}, Principal("demo", "alice"), str(uuid.uuid4())))
+        _ = asyncio.run(harness.execute("transition_workflow", {"entity_id": "LOT-00044", "to_state": "RELEASED"}, Principal("demo", "alice"), str(uuid.uuid4())))
     for r in queue.list_pending("demo"):
         a, b, c = st.columns([4, 1, 1]); a.write(f"`{r.id[:8]}` {r.tool} {r.args} — requested by **{r.requester}**")
         if b.button("Approve", key="a" + r.id):
             try:
-                queue.approve("demo", r.id, "bob", {"approver"}); import asyncio; asyncio.run(queue.apply("demo", r.id)); st.rerun()
+                _ = queue.approve("demo", r.id, "bob", {"approver"}); import asyncio; _ = asyncio.run(queue.apply("demo", r.id)); st.rerun()
             except HitlError as e: st.error(str(e))
-        if c.button("Reject", key="r" + r.id): queue.reject("demo", r.id, "bob", {"approver"}); st.rerun()
+        if c.button("Reject", key="r" + r.id): _ = queue.reject("demo", r.id, "bob", {"approver"}); st.rerun()
     st.caption(f"applied mutations: {applied} · audit chain valid: {audit.verify()[0]} · events: {len(audit.events())}")
 
 with T[1]:
