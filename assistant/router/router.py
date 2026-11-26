@@ -4,6 +4,7 @@ Never fails open into an ungrounded answer."""
 from __future__ import annotations
 import asyncio
 import json
+import logging
 import re
 import time
 from typing import Callable
@@ -13,6 +14,9 @@ from .breaker import CircuitBreaker
 from .budget import BudgetTracker, cost_usd
 from .providers import Provider
 from .types import (ABSTAIN_TEXT, ProviderError, RouterRequest, RouterResponse, Tier)
+
+
+log = logging.getLogger("assistant.router")
 
 
 def parse_json(text: str) -> dict:
@@ -56,6 +60,7 @@ class ModelRouter:
     def _finish_fallback(self, req, resp, why, t0):
         resp.reason = why
         resp.degraded = True
+        log.error("ladder_end reason=%s outcome=%s tenant=%s", why, "extractive" if req.extractive_fallback else "abstain", req.tenant_id)
         if req.extractive_fallback:
             resp.text, resp.reason = req.extractive_fallback, f"extractive:{why}"
         else:
@@ -74,6 +79,7 @@ class ModelRouter:
         resp.tier_requested = tier
         max_tokens = min(req.max_tokens, self.s.max_output_tokens, self.s.per_request_max_tokens)
         ladder = [(tier, m) for m in dict.fromkeys(req.models)] if req.models else self.ladder(tier)
+        log.info("route purpose=%s tenant=%s tier=%s ladder=%s", req.purpose, req.tenant_id, tier.name, [m for _, m in ladder])
         depth = 0
         for t, model in ladder:
             elapsed_ms = (self.clock() - t0) * 1000
@@ -82,11 +88,13 @@ class ModelRouter:
                 return self._finish_fallback(req, resp, "deadline", t0)
             br = self._breaker(model)
             if not br.allow():
-                resp.trace.append({"model": model, "skip": "breaker_open"}); depth += 1; continue
+                resp.trace.append({"model": model, "skip": "breaker_open"}); depth += 1
+                log.warning("skip model=%s reason=breaker_open", model); continue
             est = cost_usd(model, sum(len(m.content) for m in req.messages) // 3, max_tokens)
             ok, why = self.budget.can_spend(req.tenant_id, est)
             if not ok:
-                resp.trace.append({"model": model, "skip": why}); depth += 1; continue
+                resp.trace.append({"model": model, "skip": why}); depth += 1
+                log.warning("skip model=%s reason=%s tenant=%s", model, why, req.tenant_id); continue
             for attempt in range(self.s.router_max_retries + 1):
                 remaining = req.deadline_ms - (self.clock() - t0) * 1000
                 if remaining <= 0:
@@ -110,6 +118,7 @@ class ModelRouter:
                     self.budget.record(req.tenant_id, c)
                     br.success()
                     resp.trace.append({"model": model, "ok": True, "attempt": attempt})
+                    log.info("selected model=%s tier=%s fallback_depth=%d attempts=%d cost=$%.6f", model, t.name, depth, resp.attempts, c)
                     resp.text, resp.parsed, resp.model, resp.tier_used = r.text, parsed, model, t
                     resp.fallback_depth, resp.cost_usd = depth, resp.cost_usd + c
                     resp.degraded = t < tier or depth > 0
@@ -122,6 +131,7 @@ class ModelRouter:
                 if e.kind != "bad_output":      # output-quality failures retry/fallback but must not trip the provider-health breaker
                     br.failure()
                 resp.trace.append({"model": model, "error": e.kind, "attempt": attempt})
+                log.warning("failure model=%s kind=%s attempt=%d -> %s", model, e.kind, attempt, "retry" if (e.retryable and attempt < self.s.router_max_retries) else "fallback")
                 if e.fatal:      # auth/credits are per-provider: trip this model, keep walking the ladder
                     br.failures = br.threshold; br.opened_at = self.clock()
                     break

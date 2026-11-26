@@ -5,3 +5,5 @@
 __pycache__/
 *.pyc
 models/*.onnx
+.pytest_cache/
+evidence/load/*_raw.json

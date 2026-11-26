@@ -2,10 +2,12 @@
 from __future__ import annotations
 import hashlib
 import json
+import logging
 import time
 from dataclasses import dataclass, field
 from typing import Callable
 
+log = logging.getLogger("assistant.release")
 GUARDRAILS_ALWAYS_ON = {"pii_redactor", "injection_shield"}     # fail-closed plugins: flags cannot disable them
 
 
@@ -113,7 +115,9 @@ class RolloutController:
             b = self.guard.breaches(measure(pct)); res.history.append((pct, "ok" if not b else "BREACH:" + ",".join(b)))
             if b:
                 t = time.perf_counter()
+                log.error("ROLLBACK artifact=%s from=%s stage=%d%% breaches=%s", artifact, new_version, pct, b)
                 self.flags.set(flag, False, 0); self.reg.rollback(artifact)
+                log.info("rollback complete artifact=%s active=%s", artifact, self.reg.active(artifact).version)
                 if self.on_rollback: self.on_rollback()
                 res.rolled_back, res.breaches, res.final_percent = True, b, 0
                 res.rollback_seconds = time.perf_counter() - t

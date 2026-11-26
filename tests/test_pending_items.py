@@ -114,3 +114,28 @@ def test_llm_reranker_mapping_and_fail_closed():
     bad = LLMReranker(ModelRouter(s, FakeProvider({"t2p": json.dumps({"scores": [1]}), "t2f": "x", "t1p": "x", "t1f": "x"}), sleep=nosleep), pool=2)
     import pytest
     with pytest.raises(RuntimeError): bad.predict([("q", "d1"), ("q", "d2")])
+
+
+async def test_router_logs_selection_failure_fallback_and_rollback(caplog):
+    import logging
+    from assistant.release import ArtifactRegistry, FlagService, RolloutController
+    from assistant.router.types import ProviderError
+    from tests.test_slice3_router import mk, req
+    caplog.set_level(logging.INFO)
+    r, _ = mk({"t2p": ProviderError("rate_limit")})
+    out = await r.complete(req())
+    text = caplog.text
+    assert "route purpose=generic" in text and "failure model=t2p kind=rate_limit" in text and "selected model=t2f" in text
+    reg = ArtifactRegistry(); reg.register("a", "v1", {}); reg.register("a", "v2", {}); reg.activate("a", "v1")
+    RolloutController(FlagService(), reg).rollout("f", "a", "v2", lambda p: {"p95_ms": 9999})
+    assert "ROLLBACK artifact=a from=v2" in caplog.text and "rollback complete artifact=a active=v1" in caplog.text
+
+
+async def test_sku_lot_lookup_routes_to_state_store_not_documents():
+    import json
+    from tests.test_slice7 import orch
+    script = {"t1p": json.dumps({"intent": "lookup", "domain": "inventory", "risk_tier": 1, "complexity": "low"}),
+              "t2p": [json.dumps({"kind": "tool", "tool": "lookup_sku", "args": {"sku": "sku99"}}), json.dumps({"kind": "final", "answer": "SKU-099 has qty 120"})]}
+    o, prov, _, _ = orch(script); o.triage.use_model = True
+    r = await o.handle("tA", "u", "How many units of sku99 do we have?")
+    assert r.route == "STATE_LOOKUP" and "120" in r.text and not r.pending_approval

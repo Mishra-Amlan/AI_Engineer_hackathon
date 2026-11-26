@@ -9,7 +9,10 @@ from .agent.subagents import ExecutionSubagent, RetrievalSubagent
 from .agents.triage import Route, TriageAgent
 from .audit import AuditLog
 from .plugins.base import PluginManager, RequestContext, Stage
+import re
 from .tenancy import validate_tenant_id
+
+_ENTITY_ID = re.compile(r"\b(?:sku|lot)[\s_-]?\d{1,5}\b", re.I)
 
 REFUSAL = "I can't help with that request."
 OOS = "That's outside what I can help with. I can answer policy questions and look up SKU/LOT information."
@@ -65,13 +68,15 @@ class Orchestrator:
         if tri.route == Route.REJECT_OOS: return self._done(tenant_id, rid, Response(OOS, tri.route.value, rid, mode="canned"), spans, t0)
         if tri.route == Route.DIRECT_ANSWER: return self._done(tenant_id, rid, Response(HELLO, tri.route.value, rid, mode="canned"), spans, t0)
 
-        if tri.route == Route.TRANSACTION_EXEC:
+        # read-only SKU/LOT lookups are answered from the state-store (execution subagent, Tier-1 tools), not from documents
+        is_lookup = tri.route == Route.HYBRID_RAG and tri.intent == "lookup" and bool(_ENTITY_ID.search(clean))
+        if tri.route == Route.TRANSACTION_EXEC or is_lookup:
             t = time.perf_counter()
             res = await self.exec.run(tenant_id, user_id, clean, session)
             span("agent.execution", t)
             pend = res.reason == "hitl_pending"
             ans = res.answer or "I couldn't complete that request safely. A human operator has been notified."
-            return self._done(tenant_id, rid, Response(ans, tri.route.value, rid, pending_approval=pend, mode=res.state.value,
+            return self._done(tenant_id, rid, Response(ans, "STATE_LOOKUP" if is_lookup else tri.route.value, rid, pending_approval=pend, mode=res.state.value,
                                                        abstained=res.state.value.startswith("HALTED")), spans, t0)
 
         t = time.perf_counter()
